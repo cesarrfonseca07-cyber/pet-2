@@ -1,4 +1,4 @@
-import { Service, FAQItem, PetSize } from "./types";
+import { Service, FAQItem, PetSize, ModelPet } from "./types";
 
 export const SERVICES: Service[] = [
   {
@@ -122,3 +122,37 @@ export const FAQS: FAQItem[] = [
     answer: "Puedes cotizar tu servicio ideal en esta plataforma web y enviarnos los datos de agendamiento directo por WhatsApp. El pago se efectúa al momento del regreso de tu mascota por transferencia (Nequi, Daviplata, Bancolombia) o efectivo."
   }
 ];
+
+export const MODEL_PETS: ModelPet[] = [
+  {
+    name: "Milka",
+    breed: "Golden Retriever",
+    service: "Baño Premium + Cepillado",
+    image: "https://images.unsplash.com/photo-1552053831-71594a27632d?auto=format&fit=crop&q=80&w=300"
+  },
+  {
+    name: "Aki",
+    breed: "Pomerania",
+    service: "Corte Estilo Oso",
+    image: "https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&q=80&w=300"
+  },
+  {
+    name: "Rocco",
+    breed: "Bulldog Francés",
+    service: "Spa Aromaterapia & Baño",
+    image: "https://images.unsplash.com/photo-1583511655826-05700d52f4d9?auto=format&fit=crop&q=80&w=300"
+  },
+  {
+    name: "Luna",
+    breed: "Gato Persa",
+    service: "Deslanado Especial",
+    image: "https://images.unsplash.com/photo-1514888286974-6c03e2ca1dba?auto=format&fit=crop&q=80&w=300"
+  },
+  {
+    name: "Simba",
+    breed: "Gato Siamés",
+    service: "Baño Higiene Completa",
+    image: "https://images.unsplash.com/photo-1513360309081-36f5e878fc9e?auto=format&fit=crop&q=80&w=300"
+  }
+];
+

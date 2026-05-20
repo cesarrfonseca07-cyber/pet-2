@@ -23,6 +23,12 @@
   }
 }
 
+/* Highly aesthetic pet pattern background class */
+.bg-pet-pattern {
+  background-color: #FFFBF0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cg fill='none' stroke='%232D3436' stroke-width='1.4' stroke-opacity='0.11'%3E%3C!-- Cat Head + Whiskers --%3E%3Cpath d='M20 35 L12 18 L25 24 C28 22 34 22 37 24 L50 18 L42 35 C45 42 41 50 31 50 C21 50 17 42 20 35 Z' /%3E%3Cpath d='M12 36 L4 35 M12 39 L4 40 M50 36 L58 35 M50 39 L58 40' /%3E%3C!-- Dog Head + Droopy Ears + Nose --%3E%3Cpath d='M100 25 C92 25 85 30 85 40 C85 52 95 55 105 55 C115 55 125 52 125 40 C125 30 118 25 110 25 Z' /%3E%3Cpath d='M85 35 C75 30 75 48 85 45 M125 35 C135 30 135 48 125 45 M105 45 A 2 2 0 1 1 101 45 Z' /%3E%3C!-- Beautiful Paw Print --%3E%3Cpath d='M30 115 C26 115 22 120 25 126 C28 132 38 132 41 126 C44 120 40 115 36 115 Z M25 105 C22 105 19 108 20 111 C21 114 26 114 27 111 C28 108 26 105 25 105 Z M35 100 C32 100 29 103 30 106 C31 109 36 109 37 106 C38 103 35 100 35 100 Z M45 105 C42 105 39 108 40 111 C41 114 46 114 47 111 C48 108 45 105 45 105 Z' /%3E%3C!-- Premium Dog Bone --%3E%3Cpath d='M100 115 C96 111 90 115 94 120 C90 125 96 129 100 125 L120 125 C124 129 130 125 126 120 C130 115 124 111 120 115 Z' /%3E%3C!-- Sparkles / Stars --%3E%3Cpath d='M65 75 Q68 68 75 75 Q68 82 65 75 Z' /%3E%3Cpath d='M140 85 Q143 78 150 85 Q143 92 140 85 Z' /%3E%3C/g%3E%3C/svg%3E");
+}
+
 /* Custom micro-animations */
 @keyframes fadeIn {
   from {

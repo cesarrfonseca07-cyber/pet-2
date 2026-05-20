@@ -177,6 +177,7 @@ export default function AiAdvisor({ onSuggestService }: AiAdvisorProps) {
   const [loading, setLoading] = useState<boolean>(false);
   const [loadingStep, setLoadingStep] = useState<number>(0);
   const [selectedCutId, setSelectedCutId] = useState<string | null>(null);
+  const [activeLeftTab, setActiveLeftTab] = useState<"form" | "cuts">("form");
   
   const [history, setHistory] = useState<ChatMessage[]>([
     {
@@ -395,238 +396,230 @@ export default function AiAdvisor({ onSuggestService }: AiAdvisorProps) {
   return (
     <div id="ai-advisor-container" className="grid grid-cols-1 lg:grid-cols-12 gap-8 max-w-7xl mx-auto">
       {/* LEFT COLUMN: PARAMETERS AND CONCERNS */}
-      <div className="lg:col-span-4 space-y-6">
-        <div className="bg-white p-6 rounded-[32px] border-2 border-vibrant-dark/15 shadow-sm space-y-5">
-          <div>
-            <span className="text-[10px] font-mono tracking-wider text-vibrant-red uppercase font-black block mb-1">
-              Asistencia Virtual Avanzada
-            </span>
-            <h3 className="text-xl font-black text-vibrant-dark tracking-tight">Ficha de Consulta</h3>
-            <p className="text-vibrant-dark/75 text-xs leading-relaxed mt-1 font-semibold">
-              Ingresa la especie y raza para que la IA elaboro un análisis específico del pelo y dermis.
-            </p>
-          </div>
-
-          {/* Type picker */}
-          <div className="flex gap-2">
-            <button
-              id="ai-type-dog"
-              type="button"
-              onClick={() => setPetType("dog")}
-              className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl border-2 text-sm font-bold transition-all cursor-pointer ${
-                petType === "dog"
-                  ? "border-vibrant-red bg-vibrant-red/10 text-vibrant-red"
-                  : "border-vibrant-dark/10 hover:border-vibrant-dark/20 text-vibrant-dark bg-white"
-              }`}
-            >
-              🐕 Perro
-            </button>
-            <button
-              id="ai-type-cat"
-              type="button"
-              onClick={() => setPetType("cat")}
-              className={`flex-1 flex items-center justify-center gap-2 py-2.5 rounded-xl border-2 text-sm font-bold transition-all cursor-pointer ${
-                petType === "cat"
-                  ? "border-vibrant-red bg-vibrant-red/10 text-vibrant-red"
-                  : "border-vibrant-dark/10 hover:border-vibrant-dark/20 text-vibrant-dark bg-white"
-              }`}
-            >
-              🐈 Gato
-            </button>
-          </div>
-
-          {/* Breed input */}
-          <div className="space-y-1.5 font-bold text-xs">
-            <label id="ai-lbl-breed" className="block text-[11px] font-black uppercase tracking-wider text-vibrant-dark/70">
-              Raza de tu mascota
-            </label>
-            <input
-              id="ai-input-breed"
-              type="text"
-              list="ai-colombian-breeds-list"
-              placeholder="Ej: Golden Retriever, Criollo, Siamés..."
-              value={breed}
-              onChange={e => setBreed(e.target.value)}
-              className="w-full px-3.5 py-2.5 rounded-xl border-2 border-vibrant-dark/10 font-sans text-xs focus:outline-none focus:border-vibrant-dark bg-vibrant-bg font-semibold"
-            />
-            <datalist id="ai-colombian-breeds-list">
-              {COLOMBIAN_BREEDS.map((chip, idx) => (
-                <option key={idx} value={chip.breedKey}>
-                  {chip.breedKey} ({chip.type === "dog" ? "Perro" : "Gato"})
-                </option>
-              ))}
-            </datalist>
-          </div>
-
-          {/* Quick breed selection chips */}
-          <div className="space-y-1.5 font-bold text-xs pt-1">
-            <span className="block text-[10px] font-black uppercase tracking-wider text-vibrant-dark/60">
-              Sugerencias de Raza populares en Colombia:
-            </span>
-            <div className="flex flex-wrap gap-1.5 max-h-36 overflow-y-auto pr-1">
-              {COLOMBIAN_BREEDS.filter(chip => chip.type === petType).map((chip, i) => (
-                <button
-                  key={i}
-                  type="button"
-                  onClick={() => {
-                    setBreed(chip.breedKey);
-                    setSelectedConcern("");
-                  }}
-                  className={`px-2 py-1 rounded-lg text-[10px] font-black tracking-wide border transition-all cursor-pointer ${
-                    breed.toLowerCase() === chip.breedKey.toLowerCase()
-                      ? "bg-vibrant-red text-white border-vibrant-red"
-                      : "bg-vibrant-bg hover:bg-vibrant-dark/5 text-vibrant-dark/80 border-vibrant-dark/15"
-                  }`}
-                >
-                  {chip.name}
-                </button>
-              ))}
-            </div>
-          </div>
-
-          {/* Concern triggers */}
-          <div className="space-y-2 pt-2 border-t-2 border-vibrant-dark/5">
-            <span className="block text-[11px] font-black uppercase tracking-wider text-vibrant-dark/70 mb-1">
-              Inquietudes Comunes IA
-            </span>
-            <div className="space-y-1.5 max-h-56 overflow-y-auto pr-1">
-              {PRESET_CONCERNS.map((concern) => (
-                <button
-                  key={concern.id}
-                  id={`ai-preset-${concern.id}`}
-                  type="button"
-                  onClick={() => handleApplyConcern(concern.id, concern.question)}
-                  className={`w-full text-left p-2.5 rounded-xl text-xs leading-normal font-sans border-2 transition-all cursor-pointer block font-semibold ${
-                    selectedConcern === concern.id
-                      ? "bg-vibrant-red text-white border-vibrant-red font-black"
-                      : "bg-white text-vibrant-dark border-vibrant-dark/10 hover:border-vibrant-dark/20 hover:bg-vibrant-bg"
-                  }`}
-                >
-                  {concern.label}
-                </button>
-              ))}
-            </div>
-          </div>
+      <div className="lg:col-span-4 space-y-3">
+        {/* Switcher tabs */}
+        <div className="flex gap-2 p-1.5 bg-white rounded-2xl border-2 border-vibrant-dark/15 shadow-sm">
+          <button
+            type="button"
+            onClick={() => setActiveLeftTab("form")}
+            className={`flex-1 py-1.5 text-[10px] sm:text-xs font-black uppercase text-center rounded-xl transition-all cursor-pointer ${
+              activeLeftTab === "form"
+                ? "bg-vibrant-dark text-white shadow-sm"
+                : "bg-vibrant-bg hover:bg-slate-100 text-vibrant-dark/70"
+            }`}
+          >
+            📋 Ficha Caso
+          </button>
+          <button
+            type="button"
+            onClick={() => setActiveLeftTab("cuts")}
+            className={`flex-1 py-1.5 text-[10px] sm:text-xs font-black uppercase text-center rounded-xl transition-all cursor-pointer ${
+              activeLeftTab === "cuts"
+                ? "bg-vibrant-dark text-white shadow-sm"
+                : "bg-vibrant-bg hover:bg-slate-100 text-vibrant-dark/70"
+            }`}
+          >
+            ✂️ Cortes Recomendados
+          </button>
         </div>
 
-        {/* Dynamic Haircut catalog card */}
-        <div className="bg-white p-6 rounded-[32px] border-2 border-vibrant-dark/15 shadow-sm space-y-4">
-          <div className="flex justify-between items-center border-b-2 border-vibrant-dark/5 pb-2.5">
-            <div>
-              <span className="text-[10px] font-mono tracking-wider text-vibrant-turquoise uppercase font-black block mb-0.5">
-                Tendencias de Estilismo
-              </span>
-              <h3 className="text-sm font-black text-vibrant-dark tracking-tight flex items-center gap-1.5">
-                ✂️ Cortes para {breed || (petType === "dog" ? "Perros" : "Gatos")}
-              </h3>
-            </div>
-            <span className="px-2 py-0.5 rounded-full bg-vibrant-yellow text-vibrant-dark text-[9px] uppercase font-mono font-black tracking-wider">
-              {getBreedKey() === "universal" ? "Universales" : "Exclusivos"}
-            </span>
-          </div>
+        {/* Tab content conditional rendering with fixed viewport */}
+        <div className="h-[340px] overflow-y-auto pr-1">
+          {activeLeftTab === "form" ? (
+            <div className="bg-white p-4 rounded-[24px] border-2 border-vibrant-dark/15 shadow-sm space-y-4">
+              <div>
+                <span className="text-[9px] font-mono tracking-wider text-vibrant-red uppercase font-black block mb-0.5">
+                  Asistencia Virtual
+                </span>
+                <h3 className="text-sm font-black text-vibrant-dark tracking-tight">Ficha & Inquietud</h3>
+              </div>
 
-          <p className="text-vibrant-dark/75 text-[11px] font-semibold leading-normal">
-            Haz clic en tu corte preferido con fotos reales para seleccionarlo y agregarlo automáticamente a tu cita de estética:
-          </p>
-
-          <div className="space-y-3.5 max-h-[360px] overflow-y-auto pr-1">
-            {BREED_CUTS[getBreedKey()].map((cut) => {
-              const isSelected = selectedCutId === cut.id;
-              return (
-                <div 
-                  key={cut.id}
-                  className={`border-2 rounded-2xl p-3 flex gap-3 transition-all ${
-                    isSelected 
-                      ? "border-vibrant-red bg-vibrant-red/5 ring-3 ring-vibrant-yellow/45 scale-[1.01]" 
-                      : "border-vibrant-dark/10 hover:border-vibrant-dark/15 bg-white"
+              {/* Type picker */}
+              <div className="flex gap-2">
+                <button
+                  id="ai-type-dog"
+                  type="button"
+                  onClick={() => setPetType("dog")}
+                  className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-xl border-2 text-xs font-bold transition-all cursor-pointer ${
+                    petType === "dog"
+                      ? "border-vibrant-red bg-vibrant-red/10 text-vibrant-red"
+                      : "border-vibrant-dark/10 hover:border-vibrant-dark/20 text-vibrant-dark bg-white"
                   }`}
                 >
-                  <img 
-                    src={cut.image} 
-                    alt={cut.name}
-                    referrerPolicy="no-referrer"
-                    className="w-16 h-16 sm:w-20 sm:h-20 rounded-xl object-cover border-2 border-vibrant-dark/10 flex-shrink-0"
-                  />
-                  <div className="flex-1 flex flex-col justify-between min-w-0">
-                    <div>
-                      <div className="flex items-center justify-between gap-1 mb-0.5">
-                        <span className="font-sans font-black text-xs text-vibrant-dark leading-tight line-clamp-1">{cut.name}</span>
-                        <span className="text-[8px] font-black uppercase bg-vibrant-bg text-vibrant-turquoise px-1 py-0.5 rounded border border-vibrant-dark/5 whitespace-nowrap shrink-0">{cut.tag}</span>
-                      </div>
-                      <p className="text-[10px] text-vibrant-dark/70 font-semibold line-clamp-2 leading-relaxed">{cut.description}</p>
-                    </div>
-                    
+                  🐕 Perro
+                </button>
+                <button
+                  id="ai-type-cat"
+                  type="button"
+                  onClick={() => setPetType("cat")}
+                  className={`flex-1 flex items-center justify-center gap-1.5 py-2 rounded-xl border-2 text-xs font-bold transition-all cursor-pointer ${
+                    petType === "cat"
+                      ? "border-vibrant-red bg-vibrant-red/10 text-vibrant-red"
+                      : "border-vibrant-dark/10 hover:border-vibrant-dark/20 text-vibrant-dark bg-white"
+                  }`}
+                >
+                  🐈 Gato
+                </button>
+              </div>
+
+              {/* Breed input */}
+              <div className="space-y-1 font-bold text-xs">
+                <label id="ai-lbl-breed" className="block text-[10px] font-black uppercase tracking-wider text-vibrant-dark/70">
+                  Raza de tu mascota
+                </label>
+                <input
+                  id="ai-input-breed"
+                  type="text"
+                  list="ai-colombian-breeds-list"
+                  placeholder="Ej: Golden Retriever, Criollo..."
+                  value={breed}
+                  onChange={e => setBreed(e.target.value)}
+                  className="w-full px-3 py-2 rounded-xl border-2 border-vibrant-dark/10 font-sans text-xs focus:outline-none focus:border-vibrant-dark bg-vibrant-bg font-semibold"
+                />
+                <datalist id="ai-colombian-breeds-list">
+                  {COLOMBIAN_BREEDS.map((chip, idx) => (
+                    <option key={idx} value={chip.breedKey}>
+                      {chip.breedKey} ({chip.type === "dog" ? "Perro" : "Gato"})
+                    </option>
+                  ))}
+                </datalist>
+              </div>
+
+              {/* Quick breed selection chips */}
+              <div className="space-y-1 font-bold text-xs">
+                <span className="block text-[9px] font-black uppercase tracking-wider text-vibrant-dark/50">
+                  Sugerencias:
+                </span>
+                <div className="flex flex-wrap gap-1 max-h-20 overflow-y-auto pr-1">
+                  {COLOMBIAN_BREEDS.filter(chip => chip.type === petType).map((chip, i) => (
                     <button
+                      key={i}
                       type="button"
-                      onClick={() => handleSelectCut(cut)}
-                      className={`w-full text-center py-1 mt-1.5 rounded-lg text-[10px] font-black transition-all cursor-pointer ${
-                        isSelected
-                          ? "bg-emerald-500 text-white hover:bg-emerald-600"
-                          : "bg-vibrant-dark text-white hover:bg-vibrant-red"
+                      onClick={() => {
+                        setBreed(chip.breedKey);
+                        setSelectedConcern("");
+                      }}
+                      className={`px-1.5 py-0.5 rounded-lg text-[9px] font-black tracking-wide border transition-all cursor-pointer ${
+                        breed.toLowerCase() === chip.breedKey.toLowerCase()
+                          ? "bg-vibrant-red text-white border-vibrant-red"
+                          : "bg-vibrant-bg hover:bg-vibrant-dark/5 text-vibrant-dark/80 border-vibrant-dark/15"
                       }`}
                     >
-                      {isSelected ? "✓ Seleccionado para Cita" : "Elegir este Estilo ✂️"}
+                      {chip.breedKey}
                     </button>
-                  </div>
+                  ))}
                 </div>
-              );
-            })}
-          </div>
+              </div>
+
+              {/* Concern triggers */}
+              <div className="space-y-1 border-t border-vibrant-dark/5 pt-2">
+                <span className="block text-[10px] font-black uppercase tracking-wider text-vibrant-dark/70 mb-1">
+                  Inquietudes Comunes
+                </span>
+                <div className="space-y-1 max-h-28 overflow-y-auto pr-1">
+                  {PRESET_CONCERNS.map((concern) => (
+                    <button
+                      key={concern.id}
+                      id={`ai-preset-${concern.id}`}
+                      type="button"
+                      onClick={() => handleApplyConcern(concern.id, concern.question)}
+                      className={`w-full text-left p-1.5 rounded-lg text-[10px] leading-normal font-sans border transition-all cursor-pointer block font-semibold ${
+                        selectedConcern === concern.id
+                          ? "bg-vibrant-red text-white border-vibrant-red font-black"
+                          : "bg-white text-vibrant-dark border-vibrant-dark/10 hover:bg-vibrant-bg"
+                      }`}
+                    >
+                      {concern.label}
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </div>
+          ) : (
+            <div className="bg-white p-4 rounded-[24px] border-2 border-vibrant-dark/15 shadow-sm space-y-3.5">
+              <div className="flex justify-between items-center border-b border-vibrant-dark/5 pb-1.5">
+                <div>
+                  <span className="text-[9px] font-mono tracking-wider text-vibrant-turquoise uppercase font-black block">
+                    Tendencias
+                  </span>
+                  <h3 className="text-xs font-black text-vibrant-dark tracking-tight">
+                    ✂️ Cortes para {breed || (petType === "dog" ? "Perros" : "Gatos")}
+                  </h3>
+                </div>
+                <span className="px-1.5 py-0.5 rounded bg-vibrant-yellow text-vibrant-dark text-[8px] uppercase font-mono font-black tracking-wider">
+                  {getBreedKey() === "universal" ? "U." : "E."}
+                </span>
+              </div>
+
+              <div className="space-y-2.5">
+                {BREED_CUTS[getBreedKey()].map((cut) => {
+                  const isSelected = selectedCutId === cut.id;
+                  return (
+                    <div 
+                      key={cut.id}
+                      className={`border rounded-xl p-2.5 flex gap-2.5 transition-all ${
+                        isSelected 
+                          ? "border-vibrant-red bg-vibrant-red/5 ring-2 ring-vibrant-yellow/45 scale-[1.01]" 
+                          : "border-vibrant-dark/10 hover:border-vibrant-dark/15 bg-white"
+                      }`}
+                    >
+                      <img 
+                        src={cut.image} 
+                        alt={cut.name}
+                        referrerPolicy="no-referrer"
+                        className="w-12 h-12 rounded-lg object-cover border border-vibrant-dark/10 flex-shrink-0"
+                      />
+                      <div className="flex-1 flex flex-col justify-between min-w-0">
+                        <div>
+                          <div className="flex items-center justify-between gap-1">
+                            <span className="font-sans font-black text-[10px] text-vibrant-dark leading-tight line-clamp-1">{cut.name}</span>
+                            <span className="text-[7px] font-black uppercase bg-vibrant-bg text-vibrant-turquoise px-1 rounded border border-vibrant-dark/5 whitespace-nowrap shrink-0">{cut.tag.split(" ")[0]}</span>
+                          </div>
+                          <p className="text-[9px] text-vibrant-dark/70 font-semibold line-clamp-1 leading-normal">{cut.description}</p>
+                        </div>
+                        
+                        <button
+                          type="button"
+                          onClick={() => handleSelectCut(cut)}
+                          className={`w-full text-center py-0.5 mt-1 rounded text-[8px] font-black transition-all cursor-pointer ${
+                            isSelected
+                              ? "bg-emerald-500 text-white hover:bg-emerald-600"
+                              : "bg-vibrant-dark text-white hover:bg-vibrant-red"
+                          }`}
+                        >
+                          {isSelected ? "✓ Seleccionado" : "Elegir Estilo ✂️"}
+                        </button>
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+          )}
         </div>
 
-        {/* Dynamic trigger card to match selected package */}
-        <div className="bg-vibrant-dark text-white p-5 rounded-[32px] space-y-4 shadow-md border-b-4 border-black/35">
-          <div className="flex gap-2 items-start">
-            <div className="p-2 rounded-xl bg-vibrant-red/20 text-vibrant-red">
-              <Bot className="w-5 h-5" />
-            </div>
-            <div>
-              <span className="font-sans font-black text-sm block tracking-tight text-white">¿Tienes un veredicto?</span>
-              <p className="text-slate-300 text-xs font-semibold font-sans mt-0.5 leading-relaxed">
-                Aplica la sugerencia de la IA directamente en nuestro cotizador de citas con un solo clic.
-              </p>
-            </div>
-          </div>
-
-          <div className="grid grid-cols-2 gap-2 pt-1.5">
+        {/* Shortcuts card with highly optimized styling */}
+        <div className="bg-vibrant-dark text-white p-3 rounded-[24px] shadow-sm border-b-2 border-black/35">
+          <p className="text-[8px] font-sans text-slate-300 font-black uppercase tracking-wider mb-1.5 text-center">🎯 Aplicar Recomendaciones Rápidas al Formulario</p>
+          <div className="grid grid-cols-2 gap-1.5">
             <button
               id="shortcut-bath"
               onClick={() => triggerAutoSuggest("baño-premium")}
-              className="p-3.5 rounded-2xl bg-white/10 hover:bg-white/20 text-[11px] font-sans font-black text-slate-100 border border-white/10 text-left flex flex-col justify-between h-20 transition-all cursor-pointer"
+              className="p-2 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-[9px] font-sans font-black text-slate-100 border border-white/5 text-left flex flex-col justify-between h-11 transition-all cursor-pointer"
             >
               <span>🫧 Baño Premium</span>
-              <span className="text-vibrant-yellow font-black text-[10px] flex items-center gap-0.5">
-                Ver cotización <ChevronRight className="w-3 h-3 text-vibrant-yellow" />
+              <span className="text-vibrant-yellow font-black text-[7px] flex items-center">
+                Cotizar <ChevronRight className="w-2 h-2 text-vibrant-yellow ml-0.5" />
               </span>
             </button>
             <button
               id="shortcut-cut"
               onClick={() => triggerAutoSuggest("corte-estilo")}
-              className="p-3.5 rounded-2xl bg-white/10 hover:bg-white/20 text-[11px] font-sans font-black text-slate-100 border border-white/10 text-left flex flex-col justify-between h-20 transition-all cursor-pointer"
+              className="p-2 py-1.5 rounded-xl bg-white/10 hover:bg-white/20 text-[9px] font-sans font-black text-slate-100 border border-white/5 text-left flex flex-col justify-between h-11 transition-all cursor-pointer"
             >
               <span>✂️ Corte & Estilo</span>
-              <span className="text-vibrant-yellow font-black text-[10px] flex items-center gap-0.5">
-                Ver cotización <ChevronRight className="w-3 h-3 text-vibrant-yellow" />
-              </span>
-            </button>
-            <button
-              id="shortcut-spa"
-              onClick={() => triggerAutoSuggest("spa-aromaterapia")}
-              className="p-3.5 rounded-2xl bg-white/10 hover:bg-white/20 text-[11px] font-sans font-black text-slate-100 border border-white/10 text-left flex flex-col justify-between h-20 transition-all cursor-pointer"
-            >
-              <span>🌸 Spa Relajante</span>
-              <span className="text-vibrant-yellow font-black text-[10px] flex items-center gap-0.5">
-                Ver cotización <ChevronRight className="w-3 h-3 text-vibrant-yellow" />
-              </span>
-            </button>
-            <button
-              id="shortcut-deslanado"
-              onClick={() => triggerAutoSuggest("deslanado-profundo")}
-              className="p-3.5 rounded-2xl bg-white/10 hover:bg-white/20 text-[11px] font-sans font-black text-slate-100 border border-white/10 text-left flex flex-col justify-between h-20 transition-all cursor-pointer"
-            >
-              <span>🦁 Deslanado Especial</span>
-              <span className="text-vibrant-yellow font-black text-[10px] flex items-center gap-0.5">
-                Ver cotización <ChevronRight className="w-3 h-3 text-vibrant-yellow" />
+              <span className="text-vibrant-yellow font-black text-[7px] flex items-center">
+                Cotizar <ChevronRight className="w-2 h-2 text-vibrant-yellow ml-0.5" />
               </span>
             </button>
           </div>

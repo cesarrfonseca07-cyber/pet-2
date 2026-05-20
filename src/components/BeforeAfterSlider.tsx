@@ -79,7 +79,7 @@ export default function BeforeAfterSlider() {
       {/* Slider viewport */}
       <div 
         ref={containerRef}
-        className="relative w-full h-[320px] sm:h-[380px] rounded-2xl overflow-hidden cursor-ew-resize select-none border-2 border-vibrant-dark/10 shadow-inner"
+        className="relative w-full h-[240px] sm:h-[280px] rounded-2xl overflow-hidden cursor-ew-resize select-none border-2 border-vibrant-dark/10 shadow-inner"
         onMouseMove={handleMouseMove}
         onTouchMove={handleTouchMove}
         onMouseDown={(e) => { e.preventDefault(); startDrag(); }}

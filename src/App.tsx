@@ -6,7 +6,7 @@ import GroomingAgenda from "./components/GroomingAgenda";
 import AiAdvisor from "./components/AiAdvisor";
 import FaqSection from "./components/FaqSection";
 import BeforeAfterSlider from "./components/BeforeAfterSlider";
-import { SERVICES, SIZE_FACTORS } from "./data";
+import { SERVICES, SIZE_FACTORS, MODEL_PETS } from "./data";
 import { BookingState, PetType } from "./types";
 import { 
   Bath, 
@@ -29,6 +29,7 @@ import {
 
 export default function App() {
   const [activeSection, setActiveSection] = useState<string>("home");
+  const [activeServiceTab, setActiveServiceTab] = useState<string>("baño-premium");
   const [calculatorPreset, setCalculatorPreset] = useState<Partial<BookingState>>({
     petType: "dog",
     petName: "",
@@ -135,7 +136,7 @@ export default function App() {
     }).format(val);
   };
   return (
-    <div className="min-h-screen bg-vibrant-bg text-vibrant-dark selection:bg-vibrant-red selection:text-white antialiased">
+    <div className="min-h-screen bg-pet-pattern text-vibrant-dark selection:bg-vibrant-red selection:text-white antialiased">
       {/* Dynamic Header navigation */}
       <Header onScrollToElement={scrollToSection} activeSection={activeSection} />
       {/* SECTION 1: HERO CONTAINER */}
@@ -270,7 +271,7 @@ export default function App() {
       </section>
 
       {/* SECTION 2: SERVICES BREAKDOWN DISPLAY */}
-      <section id="services" className="py-10 sm:py-14 bg-white border-y-2 border-vibrant-dark/10 relative">
+      <section id="services" className="py-6 sm:py-8 bg-white/95 border-y-2 border-vibrant-dark/10 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header layout */}
           <div className="text-center max-w-xl mx-auto mb-8 space-y-1.5">
@@ -285,69 +286,98 @@ export default function App() {
             </p>
           </div>
 
-          {/* Cards dynamic list block */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
-            {SERVICES.map((srv) => (
-              <div
-                key={srv.id}
-                id={`service-card-item-${srv.id}`}
-                className="bg-vibrant-bg rounded-[24px] p-4 sm:p-5 border-2 border-vibrant-dark/15 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+          {/* Tabs bar */}
+          <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 mb-6 max-w-4xl mx-auto">
+            {SERVICES.map((srv) => {
+              const isSelected = activeServiceTab === srv.id;
+              return (
+                <button
+                  key={srv.id}
+                  id={`service-tab-trigger-${srv.id}`}
+                  type="button"
+                  onClick={() => setActiveServiceTab(srv.id)}
+                  className={`flex items-center gap-1 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl text-[10px] sm:text-xs font-black uppercase tracking-wider transition-all border-2 cursor-pointer ${
+                    isSelected
+                      ? "bg-vibrant-dark text-white border-vibrant-dark shadow"
+                      : "bg-vibrant-bg text-vibrant-dark/80 border-vibrant-dark/10 hover:border-vibrant-dark/20"
+                  }`}
+                >
+                  <span className="text-xs sm:text-sm">
+                    {srv.id === "baño-premium" && "🚿"}
+                    {srv.id === "corte-estilo" && "✂️"}
+                    {srv.id === "spa-aromaterapia" && "🌸"}
+                    {srv.id === "deslanado-profundo" && "🪮"}
+                  </span>
+                  <span>{srv.name.split(" ")[0]} {srv.name.split(" ")[1] || ""}</span>
+                </button>
+              );
+            })}
+          </div>
+
+          {/* Active plan card details */}
+          {(() => {
+            const activeSrv = SERVICES.find(s => s.id === activeServiceTab) || SERVICES[0];
+            return (
+              <div 
+                id="active-service-details-panel"
+                className="bg-vibrant-bg rounded-[24px] border-2 border-vibrant-dark/15 p-4 sm:p-6 lg:p-8 max-w-5xl mx-auto shadow-md hover:shadow-lg transition-all duration-300 grid grid-cols-1 md:grid-cols-12 gap-6 items-stretch"
               >
-                <div className="space-y-3">
-                  {/* Icon and duration header */}
-                  <div className="flex justify-between items-start">
-                    <div className="p-2.5 rounded-xl bg-vibrant-red/10 text-vibrant-red border border-vibrant-red/20">
-                      {srv.id === "baño-premium" && <Bath className="w-4.5 h-4.5" />}
-                      {srv.id === "corte-estilo" && <Scissors className="w-4.5 h-4.5" />}
-                      {srv.id === "spa-aromaterapia" && <Sparkles className="w-4.5 h-4.5" />}
-                      {srv.id === "deslanado-profundo" && <Award className="w-4.5 h-4.5" />}
-                      {srv.id === "armonizacion-emocional" && <Heart className="w-4.5 h-4.5 fill-vibrant-red/15" />}
+                {/* Column 1: Details */}
+                <div className="md:col-span-5 flex flex-col justify-between space-y-4">
+                  <div className="space-y-3">
+                    <div className="flex justify-between items-center">
+                      <div className="p-2.5 rounded-xl bg-vibrant-red/10 text-vibrant-red border border-vibrant-red/25 inline-flex">
+                        {activeSrv.id === "baño-premium" && <Bath className="w-5 h-5" />}
+                        {activeSrv.id === "corte-estilo" && <Scissors className="w-5 h-5" />}
+                        {activeSrv.id === "spa-aromaterapia" && <Sparkles className="w-5 h-5" />}
+                        {activeSrv.id === "deslanado-profundo" && <Award className="w-5 h-5" />}
+                      </div>
+                      <span className="font-mono text-[9px] text-vibrant-brown bg-white border border-vibrant-dark/10 rounded-full px-2.5 py-1 flex items-center gap-1 font-bold">
+                        <Clock className="w-3.5 h-3.5 text-vibrant-red" /> {activeSrv.duration}
+                      </span>
                     </div>
-                    <span className="font-mono text-[9px] text-vibrant-brown bg-white border-2 border-vibrant-dark/10 rounded-full px-2 py-0.5 flex items-center gap-1 font-bold">
-                      <Clock className="w-3 h-3 text-vibrant-red" /> {srv.duration}
-                    </span>
+
+                    <div>
+                      <h3 className="font-sans font-black text-lg text-vibrant-dark leading-tight">{activeSrv.name}</h3>
+                      <div className="mt-1 flex items-baseline gap-1">
+                        <span className="text-[10px] text-vibrant-dark/60 font-black">Desde</span>
+                        <span className="text-xl font-black font-sans text-vibrant-red">{formatCOP(activeSrv.basePrice)}</span>
+                        <span className="text-[9px] text-vibrant-dark/60 font-mono font-bold">*Mascotas Chicas</span>
+                      </div>
+                      <p className="text-xs text-vibrant-dark/80 mt-2 font-sans font-semibold leading-relaxed">{activeSrv.description}</p>
+                    </div>
                   </div>
 
-                  {/* Pricing tag */}
-                  <div>
-                    <h3 className="font-sans font-black text-base text-vibrant-dark leading-tight">{srv.name}</h3>
-                    <div className="mt-1 flex items-baseline gap-1">
-                      <span className="text-[10px] text-vibrant-dark/60 font-black">Desde</span>
-                      <span className="text-xl font-black font-sans text-vibrant-red">{formatCOP(srv.basePrice)}</span>
-                      <span className="text-[9px] text-vibrant-dark/60 font-mono font-bold">*Mascotas Chicas</span>
-                    </div>
-                    <p className="text-[11px] text-vibrant-dark/70 mt-1 font-sans font-medium leading-relaxed">{srv.description}</p>
-                  </div>
-
-                  {/* Features list bullet layout */}
-                  <ul className="space-y-1 pt-2 border-t border-vibrant-dark/10 text-left font-semibold">
-                    {srv.features.slice(0, 5).map((f, fIdx) => (
-                      <li key={fIdx} className="text-vibrant-dark/80 font-sans text-[11px] leading-snug flex items-start gap-1">
-                        <Check className="w-3 h-3 text-vibrant-turquoise shrink-0 mt-0.5 stroke-[3]" />
-                        <span>{f.replace(/^[^\sA-Za-zñáéíóú]+/g, "").trim()}</span>
-                      </li>
-                    ))}
-                    {srv.features.length > 5 && (
-                      <li className="text-[9px] text-vibrant-red font-black font-sans pt-0.5">
-                        + {srv.features.length - 5} mimos adicionales ordinarios
-                      </li>
-                    )}
-                  </ul>
-                </div>
-
-                <div className="mt-4 pt-3 border-t border-vibrant-dark/10">
                   <button
-                    id={`apply-preset-btn-${srv.id}`}
+                    id={`apply-preset-btn-${activeSrv.id}`}
                     type="button"
-                    onClick={() => handleApplyServicePreset(srv.id)}
-                    className="w-full text-center py-2 rounded-xl border border-vibrant-dark/20 bg-white hover:bg-vibrant-bg text-vibrant-dark text-[11px] font-black transition-all cursor-pointer shadow-sm hover:shadow active:scale-95"
+                    onClick={() => handleApplyServicePreset(activeSrv.id)}
+                    className="w-full text-center py-2.5 rounded-xl border border-vibrant-dark/20 bg-vibrant-dark hover:bg-slate-800 text-white text-[11px] font-black transition-all cursor-pointer shadow hover:shadow-md active:scale-95"
                   >
-                    Cotizar este Plan
+                    Cotizar este Plan Especial en el Formulario
                   </button>
                 </div>
+
+                {/* Column 2: Specific treats and checklist */}
+                <div className="md:col-span-7 bg-white p-4 sm:p-5 rounded-2xl border border-vibrant-dark/10 flex flex-col justify-center">
+                  <span className="text-[10px] font-mono tracking-widest text-vibrant-turquoise uppercase font-black block mb-3 pb-1 border-b border-vibrant-dark/10">
+                    Tratamientos & Mimos Incluidos en {activeSrv.name.split(" ")[0]}:
+                  </span>
+                  
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+                    {activeSrv.features.map((f, fIdx) => (
+                      <div key={fIdx} className="text-vibrant-dark/85 font-sans text-[11px] leading-snug flex items-start gap-1.5 p-1 hover:bg-vibrant-bg/40 rounded-lg transition-colors">
+                        <div className="w-4 h-4 rounded-full bg-vibrant-turquoise/15 text-vibrant-turquoise flex items-center justify-center shrink-0 mt-0.5">
+                          <Check className="w-2.5 h-2.5 stroke-[3]" />
+                        </div>
+                        <span className="font-semibold">{f.replace(/^[^\sA-Za-zñáéíóú]+/g, "").trim()}</span>
+                      </div>
+                    ))}
+                  </div>
+                </div>
               </div>
-            ))}
-          </div>
+            );
+          })()}
 
           {/* SIMULADOR / ALERTA DE RETORNO INTERACTIVO */}
           <div id="simulador-retorno-container" className="mt-8 p-4 sm:p-5 rounded-[24px] bg-emerald-500/10 border-2 border-emerald-500/20 max-w-5xl mx-auto shadow-sm grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
@@ -410,7 +440,7 @@ export default function App() {
       </section>
 
       {/* SECTION 3: BEFORE / AFTER REVEAL SLIDER */}
-      <section className="py-10 sm:py-14 bg-vibrant-bg border-b-2 border-vibrant-dark/10">
+      <section className="py-6 sm:py-8 border-b-2 border-vibrant-dark/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-xl mx-auto mb-8 space-y-1.5">
             <span className="text-[10px] font-mono tracking-widest text-vibrant-red uppercase font-black block">Galería Interactiva</span>
@@ -424,8 +454,57 @@ export default function App() {
         </div>
       </section>
 
+      {/* SECCIÓN NUEVA: MASCOTAS MODELO / EMBAJADORES */}
+      <section id="mascotas-modelos" className="py-8 sm:py-10 bg-vibrant-bg/65 border-b-2 border-vibrant-dark/10 relative">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center max-w-xl mx-auto mb-8 space-y-1.5">
+            <span className="text-[10px] font-mono tracking-widest text-vibrant-red uppercase font-black block">Clientes de la Semana</span>
+            <h2 className="font-sans font-black text-2xl text-vibrant-dark tracking-tight">Nuestras Mascotas Consentidas</h2>
+            <p className="text-vibrant-dark/70 font-sans text-xs font-semibold">
+              Conoce a algunos de nuestros queridos amigos de cuatro patas que lucen su peinado y cuidado de Studio Pet.
+            </p>
+          </div>
+
+          <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-4 max-w-5xl mx-auto justify-center">
+            {MODEL_PETS.map((pet, idx) => (
+              <div 
+                key={idx}
+                className="bg-white rounded-[24px] p-4 border-2 border-vibrant-dark/15 shadow-sm text-center hover:shadow-md hover:-translate-y-1 transition-all duration-300 group"
+              >
+                {/* Pet Image Frame with rounded borders and highlight */}
+                <div className="relative w-24 h-24 sm:w-28 sm:h-28 mx-auto rounded-full overflow-hidden border-4 border-vibrant-bg/85 shadow-inner group-hover:scale-105 transition-all duration-500">
+                  <img 
+                    src={pet.image} 
+                    alt={pet.name}
+                    referrerPolicy="no-referrer"
+                    className="w-full h-full object-cover"
+                  />
+                  {/* Absolute Badge styling */}
+                  <span className="absolute bottom-1 right-1 bg-vibrant-yellow text-vibrant-dark text-[9px] w-5 h-5 flex items-center justify-center rounded-full font-black border border-vibrant-dark/10 shadow-sm animate-pulse">
+                    ✨
+                  </span>
+                </div>
+
+                {/* Name underneath with Breed & Service details */}
+                <div className="mt-3.5 space-y-1">
+                  <h3 className="font-sans font-black text-sm text-vibrant-dark tracking-tight group-hover:text-vibrant-red transition-colors duration-150">
+                    {pet.name}
+                  </h3>
+                  <div className="text-[9px] font-mono font-black text-vibrant-brown bg-vibrant-yellow/15 px-2 py-0.5 rounded-full inline-block border border-vibrant-yellow/15">
+                    {pet.breed}
+                  </div>
+                  <p className="text-[10px] text-vibrant-dark/65 font-bold italic leading-tight pt-1">
+                    "{pet.service}"
+                  </p>
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+
       {/* SECTION 4: PROCESS / HOW IT WORKS */}
-      <section className="py-10 sm:py-14 bg-white border-b-2 border-vibrant-dark/10">
+      <section className="py-6 sm:py-8 bg-white/95 border-b-2 border-vibrant-dark/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-xl mx-auto mb-8 space-y-1.5">
             <span className="text-[10px] font-mono tracking-widest text-vibrant-red uppercase font-black block">Comodidad y Seguridad Total</span>
@@ -515,7 +594,7 @@ export default function App() {
       </section>
 
       {/* SECTION 5: AI ADVISOR */}
-      <section id="ai-advisor" className="py-10 sm:py-14 bg-vibrant-bg border-b-2 border-vibrant-dark/10">
+      <section id="ai-advisor" className="py-6 sm:py-8 border-b-2 border-vibrant-dark/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-xl mx-auto mb-8 space-y-1.5">
             <span className="text-[10px] font-mono tracking-widest text-vibrant-red uppercase font-black block">
@@ -534,7 +613,7 @@ export default function App() {
       </section>
 
       {/* SECTION 6: SERVICE CALCULATOR */}
-      <section id="calculator" className="py-10 sm:py-14 bg-vibrant-yellow/15 border-b-2 border-vibrant-dark/10">
+      <section id="calculator" className="py-6 sm:py-8 bg-vibrant-yellow/5 border-b-2 border-vibrant-dark/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-xl mx-auto mb-8 space-y-1.5">
             <span className="text-[10px] font-mono tracking-widest text-vibrant-dark/60 uppercase font-black block">
@@ -558,7 +637,7 @@ export default function App() {
       </section>
 
       {/* SECTION 7: FAQS ACCORDION */}
-      <section id="faqs" className="py-10 sm:py-14 bg-white">
+      <section id="faqs" className="py-6 sm:py-8 bg-white/95 border-b border-vibrant-dark/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center max-w-xl mx-auto mb-8 space-y-1.5">
             <span className="text-[10px] font-mono tracking-widest text-vibrant-red uppercase font-black block">

@@ -35,3 +35,10 @@ export interface FAQItem {
   question: string;
   answer: string;
 }
+
+export interface ModelPet {
+  name: string;
+  breed: string;
+  service: string;
+  image: string;
+}
