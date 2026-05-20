@@ -238,10 +238,16 @@ ${serviceListText}
       body: JSON.stringify(booking)
     })
       .then(async (res) => {
-        const data = await res.json();
         setSubmitting(false);
+        let data: any = {};
+        try {
+          data = await res.json();
+        } catch (e) {
+          console.error("Could not parse back-end response as JSON", e);
+        }
+
         if (!res.ok) {
-          setBookingOverlapError(data.message || "Error al programar la cita. Por favor intenta otro horario o fecha.");
+          setBookingOverlapError(data.message || `Error en el servicio de agendas (Efecto: ${res.status}). Por favor, intenta de nuevo.`);
           return;
         }
 
