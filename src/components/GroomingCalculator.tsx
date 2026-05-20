@@ -271,7 +271,8 @@ ${serviceListText}
       .catch((err) => {
         setSubmitting(false);
         console.error("Submit Error:", err);
-        setBookingOverlapError("Error de red al conectar con el servidor de agendas de Studio Pet. Intenta de nuevo.");
+        const detail = err && (err as any).message ? `: ${(err as any).message}` : "";
+        setBookingOverlapError(`Error de red al conectar con el servidor de agendas de Studio Pet${detail}. Intenta de nuevo.`);
       });
   };
 

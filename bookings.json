@@ -1,0 +1,90 @@
+[
+  {
+    "id": "bk-1",
+    "petType": "dog",
+    "petName": "Mateo",
+    "petBreed": "Golden Retriever",
+    "petSize": "large",
+    "selectedServices": [
+      "baño-premium",
+      "deslanado-profesional"
+    ],
+    "clientName": "Diana Silva",
+    "clientPhone": "3124567890",
+    "address": "Carrera 15 #82-11 Apt 402, Bogotá",
+    "date": "2026-05-21",
+    "time": "Mañana (8:00 AM - 12:00 PM)",
+    "notes": "Muy dócil, le encantan los premios de higadito.",
+    "createdAt": "2026-05-20T16:49:27.040Z"
+  },
+  {
+    "id": "bk-2",
+    "petType": "dog",
+    "petName": "Kiara",
+    "petBreed": "Shih Tzu",
+    "petSize": "small",
+    "selectedServices": [
+      "corte-estilo",
+      "spa-aromaterapia"
+    ],
+    "clientName": "Andrés Gómez",
+    "clientPhone": "3159876543",
+    "address": "Calle 142 #54-80 Casa 12, Bogotá",
+    "date": "2026-05-21",
+    "time": "Tarde (1:00 PM - 5:00 PM)",
+    "notes": "Tiene piel atópica, usar champú hipoalergénico proporcionado.",
+    "createdAt": "2026-05-20T16:49:27.040Z"
+  },
+  {
+    "id": "bk-3",
+    "petType": "cat",
+    "petName": "Loki",
+    "petBreed": "Persa",
+    "petSize": "small",
+    "selectedServices": [
+      "baño-premium",
+      "corte-garras"
+    ],
+    "clientName": "Valentina Meza",
+    "clientPhone": "3201112233",
+    "address": "Avenida Suba #116-25 Torre A 601, Bogotá",
+    "date": "2026-05-22",
+    "time": "Mañana (8:00 AM - 12:00 PM)",
+    "notes": "Gatito nervioso con el secador ruidoso.",
+    "createdAt": "2026-05-20T16:49:27.040Z"
+  },
+  {
+    "id": "bk-AJE0MT8",
+    "petType": "dog",
+    "petName": "toby",
+    "petBreed": "Criollo",
+    "petSize": "small",
+    "selectedServices": [
+      "baño-premium"
+    ],
+    "clientName": "j",
+    "clientPhone": "3167562441",
+    "address": "9999",
+    "date": "2026-07-20",
+    "time": "Tarde (1:00 PM - 5:00 PM)",
+    "notes": "mmm",
+    "createdAt": "2026-05-20T16:57:28.969Z"
+  },
+  {
+    "id": "bk-QKY1U9X",
+    "petType": "dog",
+    "petName": "Rocky",
+    "petBreed": "Pug",
+    "petSize": "small",
+    "selectedServices": [
+      "baño-premium"
+    ],
+    "clientName": "Juan Perez",
+    "clientPhone": "3001234567",
+    "address": "Calle 100 #15-30, Bogota",
+    "date": "2026-06-01",
+    "time": "Mañana (8:00 AM - 12:00 PM)",
+    "notes": "Ninguna",
+    "createdAt": "2026-05-20T18:04:16.592Z"
+  }
+]

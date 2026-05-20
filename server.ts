@@ -132,7 +132,26 @@ Responde de forma concisa y bien estructurada en formato Markdown con subtítulo
 // PROGRAMACIÓN DE CITAS Y EXCEL AGENDA DE CONTROL INTERNO
 // ==========================================================
 
-const BOOKINGS_FILE = path.join(process.cwd(), "bookings.json");
+const BOOKINGS_FILE_ROOT = path.join(process.cwd(), "bookings.json");
+let BOOKINGS_FILE = BOOKINGS_FILE_ROOT;
+
+// Use /tmp on Linux platforms to prevent file watcher reloads during dynamic writes
+if (process.platform === "linux") {
+  try {
+    const tmpFile = path.join("/tmp", "bookings.json");
+    fs.writeFileSync(tmpFile + ".test", "test", "utf-8");
+    fs.unlinkSync(tmpFile + ".test");
+    
+    if (fs.existsSync(BOOKINGS_FILE_ROOT) && !fs.existsSync(tmpFile)) {
+      fs.copyFileSync(BOOKINGS_FILE_ROOT, tmpFile);
+    }
+    BOOKINGS_FILE = tmpFile;
+    console.log(`[Database] Using safe path: ${BOOKINGS_FILE}`);
+  } catch (err) {
+    console.warn("[Database] Falling back to root bookings.json", err);
+    BOOKINGS_FILE = BOOKINGS_FILE_ROOT;
+  }
+}
 
 interface Booking {
   id: string;
