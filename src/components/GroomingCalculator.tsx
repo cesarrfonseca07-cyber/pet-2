@@ -2,7 +2,42 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
 import { SERVICES, SIZE_FACTORS } from "../data";
 import { BookingState, PetType, PetSize } from "../types";
-import { COLOMBIAN_BREEDS } from "./AiAdvisor";
+
+export const COLOMBIAN_BREEDS = [
+  // Dogs
+  { breedKey: "Golden Retriever", type: "dog" },
+  { breedKey: "Criollo / Mestizo", type: "dog" },
+  { breedKey: "Pomerania", type: "dog" },
+  { breedKey: "Shih Tzu", type: "dog" },
+  { breedKey: "Poodle / Caniche", type: "dog" },
+  { breedKey: "French Poodle", type: "dog" },
+  { breedKey: "Schnauzer", type: "dog" },
+  { breedKey: "Bulldog Francés", type: "dog" },
+  { breedKey: "Yorshire Terrier", type: "dog" },
+  { breedKey: "Siberian Husky", type: "dog" },
+  { breedKey: "Chihuahua", type: "dog" },
+  { breedKey: "Beagle", type: "dog" },
+  { breedKey: "Pinscher", type: "dog" },
+  { breedKey: "Labrador Retriever", type: "dog" },
+  { breedKey: "Maltés", type: "dog" },
+  { breedKey: "Cocker Spaniel", type: "dog" },
+  { breedKey: "Pug", type: "dog" },
+  { breedKey: "Pastor Alemán", type: "dog" },
+  { breedKey: "Samoyedo", type: "dog" },
+  { breedKey: "Boston Terrier", type: "dog" },
+
+  // Cats
+  { breedKey: "Criollo - Gato Común", type: "cat" },
+  { breedKey: "Persa", type: "cat" },
+  { breedKey: "Siamés", type: "cat" },
+  { breedKey: "Angora", type: "cat" },
+  { breedKey: "Bengala", type: "cat" },
+  { breedKey: "Maine Coon", type: "cat" },
+  { breedKey: "Esfinge (Sphynx)", type: "cat" },
+  { breedKey: "Ragdoll", type: "cat" },
+  { breedKey: "British Shorthair", type: "cat" },
+  { breedKey: "Azul Ruso", type: "cat" }
+];
 import { 
   Sparkles, 
   ChevronRight, 
@@ -502,7 +537,7 @@ ${serviceListText}
                               : "bg-white hover:bg-vibrant-dark/5 text-vibrant-dark/85 border-vibrant-dark/15"
                           }`}
                         >
-                          {chip.name}
+                          {chip.breedKey}
                         </button>
                       ))}
                     </div>

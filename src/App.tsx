@@ -3,7 +3,6 @@ import { motion } from "motion/react";
 import Header from "./components/Header";
 import GroomingCalculator, { getFutureDate } from "./components/GroomingCalculator";
 import GroomingAgenda from "./components/GroomingAgenda";
-import AiAdvisor from "./components/AiAdvisor";
 import FaqSection from "./components/FaqSection";
 import { SERVICES, SIZE_FACTORS, MODEL_PETS } from "./data";
 import { BookingState, PetType } from "./types";
@@ -70,7 +69,7 @@ export default function App() {
   // Monitor scrolling to highlight correct headers matching standard categories
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ["home", "services", "calculator", "ai-advisor", "faqs"];
+      const sections = ["home", "services", "calculator", "faqs"];
       const scrollPosition = window.scrollY + 200;
 
       for (const section of sections) {
@@ -107,18 +106,6 @@ export default function App() {
       petBreed: "",
       petSize: "small",
       selectedServices: [serviceId]
-    });
-    scrollToSection("calculator");
-  };
-
-  const handleAiSuggestPreset = (type: PetType, breed: string, services: string[], extraNotes?: string) => {
-    setCalculatorPreset({
-      petType: type,
-      petName: "Mi Peludo",
-      petBreed: breed,
-      petSize: "small",
-      selectedServices: services,
-      notes: extraNotes || ""
     });
     scrollToSection("calculator");
   };
@@ -185,18 +172,10 @@ export default function App() {
                 <button
                   id="hero-go-calculator"
                   onClick={() => scrollToSection("calculator")}
-                  className="bg-vibrant-dark hover:bg-slate-800 text-white font-black py-3 px-6 rounded-xl shadow-md hover:-translate-y-0.5 active:scale-95 transition-all duration-200 text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer"
+                  className="bg-vibrant-dark hover:bg-slate-800 text-white font-black py-3.5 px-8 rounded-xl shadow-md hover:-translate-y-0.5 active:scale-95 transition-all duration-200 text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <Sparkles className="w-4 h-4 text-vibrant-yellow" />
                   Cotizar mi Servicio
-                </button>
-                <button
-                  id="hero-go-advisor"
-                  onClick={() => scrollToSection("ai-advisor")}
-                  className="bg-vibrant-turquoise hover:bg-vibrant-turquoise-hover text-white font-black py-3 px-6 rounded-xl shadow-md hover:-translate-y-0.5 active:scale-95 transition-all duration-200 text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer"
-                >
-                  Asesoría de Estilismo IA
-                  <ChevronRight className="w-4 h-4 text-white" />
                 </button>
               </div>
 
@@ -574,25 +553,6 @@ export default function App() {
               </p>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* SECTION 5: AI ADVISOR */}
-      <section id="ai-advisor" className="py-6 sm:py-8 border-b-2 border-vibrant-dark/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-xl mx-auto mb-8 space-y-1.5">
-            <span className="text-[10px] font-mono tracking-widest text-vibrant-red uppercase font-black block">
-              Dermatología y Estética Inteligente
-            </span>
-            <h2 className="font-sans font-black text-2xl text-vibrant-dark tracking-tight">
-              Asesoría de Estilismo y Cuidado IA
-            </h2>
-            <p className="text-vibrant-dark/70 font-sans text-xs font-semibold">
-              ¿Tu mascota tiene piel sensible, enredos graves o muda masiva? Consulta a nuestro veterinario virtual y recibe planificaciones cosméticas ideales.
-            </p>
-          </div>
-
-          <AiAdvisor onSuggestService={handleAiSuggestPreset} />
         </div>
       </section>
 

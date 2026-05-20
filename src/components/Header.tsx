@@ -64,17 +64,6 @@ export default function Header({ onScrollToElement, activeSection }: HeaderProps
               Cotizar Cita
             </button>
             <button
-              id="nav-ai-advisor"
-              onClick={() => handleNavClick("ai-advisor")}
-              className={`font-sans text-sm font-bold transition-all duration-200 cursor-pointer flex items-center gap-1.5 ${
-                activeSection === "ai-advisor" ? "text-vibrant-red scale-105" : "text-vibrant-dark hover:text-vibrant-red"
-              }`}
-            >
-              <span className="bg-gradient-to-r from-violet-600 to-vibrant-red text-transparent bg-clip-text font-extrabold">
-                Asesoría IA
-              </span>
-            </button>
-            <button
               id="nav-faqs"
               onClick={() => handleNavClick("faqs")}
               className={`font-sans text-sm font-bold transition-all duration-200 cursor-pointer ${
@@ -149,17 +138,6 @@ export default function Header({ onScrollToElement, activeSection }: HeaderProps
             >
               <Sparkles className="w-4 h-4 fill-vibrant-dark/10 text-vibrant-dark" />
               Cotizar & Agendar Cita
-            </button>
-            <button
-              type="button"
-              onClick={() => handleNavClick("ai-advisor")}
-              className={`p-3.5 text-center text-xs font-black rounded-2xl border-2 transition-all col-span-2 flex items-center justify-center gap-1.5 ${
-                activeSection === "ai-advisor"
-                  ? "bg-violet-600 text-white border-violet-600 shadow-sm"
-                  : "bg-white text-vibrant-dark border-vibrant-dark/10 hover:border-vibrant-dark/20"
-              }`}
-            >
-              ✨ Dermatología & Asesoría IA
             </button>
             <button
               type="button"
