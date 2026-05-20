@@ -138,56 +138,54 @@ export default function App() {
     <div className="min-h-screen bg-vibrant-bg text-vibrant-dark selection:bg-vibrant-red selection:text-white antialiased">
       {/* Dynamic Header navigation */}
       <Header onScrollToElement={scrollToSection} activeSection={activeSection} />
-
       {/* SECTION 1: HERO CONTAINER */}
-      <section id="home" className="relative pt-12 pb-24 sm:pt-20 sm:pb-32 overflow-hidden">
+      <section id="home" className="relative pt-6 pb-12 sm:pt-10 sm:pb-16 overflow-hidden">
         {/* Playful circular blurred shapes behind elements */}
         <div className="absolute top-20 left-[-10%] w-[35%] h-[35%] rounded-full bg-vibrant-yellow/40 blur-[100px] pointer-events-none" />
         <div className="absolute bottom-10 right-[-10%] w-[40%] h-[40%] rounded-full bg-vibrant-red/20 blur-[120px] pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-center">
             {/* Hero text information */}
-            <div className="lg:col-span-12 xl:col-span-7 space-y-8 text-center lg:text-left">
+            <div className="lg:col-span-12 xl:col-span-7 space-y-5 text-center lg:text-left">
               {/* Highlight Tag */}
-              <div className="inline-flex items-center gap-1.5 bg-vibrant-red/10 text-vibrant-red px-4 py-1.5 rounded-full text-xs font-black border border-vibrant-red/20 uppercase tracking-wider shadow-sm">
-                <Truck className="w-3.5 h-3.5 animate-bounce text-vibrant-red" />
-                Estética Móvil Canina y Felina a Domicilio
+              <div className="inline-flex items-center gap-1.5 bg-vibrant-red/10 text-vibrant-red px-3.5 py-1.5 rounded-full text-[10px] sm:text-xs font-black border border-vibrant-red/20 uppercase tracking-wider shadow-sm">
+                <Truck className="w-3 h-3 animate-bounce text-vibrant-red" />
+                Estética Móvil Premium a Domicilio
               </div>
 
-              <div className="space-y-4">
-                <h1 className="font-sans font-black text-4xl sm:text-5xl lg:text-6xl text-vibrant-dark tracking-tight leading-[1.1]">
+              <div className="space-y-3">
+                <h1 className="font-sans font-black text-3xl sm:text-4xl lg:text-5xl text-vibrant-dark tracking-tight leading-[1.15]">
                   Estética de lujo para tu mascota, <span className="bg-gradient-to-r from-vibrant-red to-amber-500 text-transparent bg-clip-text font-black">sin salir de casa</span>
                 </h1>
-                <p className="font-sans text-vibrant-dark/80 text-base sm:text-lg max-w-xl mx-auto lg:mx-0 leading-relaxed font-semibold">
-                  Recogemos tu mascota en la puerta de tu casa o trabajo y te la devolvemos limpia, perfumada, libre de nudos y muy feliz. 💖 
-                  ¡Higiene profesional con el máximo amor y respeto!
+                <p className="font-sans text-vibrant-dark/80 text-sm sm:text-base max-w-xl mx-auto lg:mx-0 leading-relaxed font-semibold">
+                  Recogemos tu mascota en la puerta de tu casa o trabajo y te la devolvemos limpia, perfumada, libre de nudos y muy feliz. 💖 ¡Higiene profesional con el máximo amor!
                 </p>
               </div>
 
               {/* High Contrast Banner showing pickup is 100% free */}
-              <div className="bg-vibrant-yellow border-2 border-vibrant-dark/20 p-5 rounded-[28px] max-w-lg mx-auto lg:mx-0 flex items-center gap-3.5 shadow-md text-left transform -rotate-1 relative overflow-hidden group">
-                <div className="absolute top-[-10px] right-[-10px] w-20 h-20 bg-white/30 rounded-full blur-xl"></div>
-                <div className="bg-vibrant-dark text-white p-3 rounded-2xl shadow-md flex-shrink-0">
-                  <Truck className="w-5 h-5 text-vibrant-yellow" />
+              <div className="bg-vibrant-yellow border-2 border-vibrant-dark/20 p-4 rounded-[22px] max-w-lg mx-auto lg:mx-0 flex items-center gap-3 shadow-md text-left transform -rotate-1 relative overflow-hidden group">
+                <div className="absolute top-[-10px] right-[-10px] w-20 h-20 bg-white/30 rounded-full blur-xl animate-none"></div>
+                <div className="bg-vibrant-dark text-white p-2.5 rounded-xl shadow-md flex-shrink-0">
+                  <Truck className="w-4.5 h-4.5 text-vibrant-yellow" />
                 </div>
                 <div>
-                  <span className="text-[11px] font-black text-vibrant-brown uppercase tracking-widest block font-mono">Beneficio Exclusivo</span>
-                  <span className="text-sm font-black text-vibrant-dark block mt-0.5 leading-tight">
+                  <span className="text-[9px] font-black text-vibrant-brown uppercase tracking-widest block font-mono">Beneficio Exclusivo</span>
+                  <span className="text-xs sm:text-sm font-black text-vibrant-dark block mt-0.5 leading-tight">
                     Recogida y retorno ¡TOTALMENTE GRATIS!
                   </span>
-                  <p className="text-[11px] text-vibrant-brown font-semibold leading-normal font-sans mt-0.5">
-                    Servicio incluido sin recargo logístico para toda el área urbana.
+                  <p className="text-[10px] text-vibrant-brown font-semibold leading-normal font-sans mt-0.5">
+                    Servicio de recogida gratuito en todo el perímetro urbano consolidado.
                   </p>
                 </div>
               </div>
 
               {/* Core Call to Actions */}
-              <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-4 pt-2">
+              <div className="flex flex-col sm:flex-row justify-center lg:justify-start gap-3 pt-1">
                 <button
                   id="hero-go-calculator"
                   onClick={() => scrollToSection("calculator")}
-                  className="bg-vibrant-dark hover:bg-slate-800 text-white font-black py-4 px-8 rounded-2xl shadow-xl hover:-translate-y-0.5 active:scale-95 transition-all duration-200 text-sm flex items-center justify-center gap-2 cursor-pointer"
+                  className="bg-vibrant-dark hover:bg-slate-800 text-white font-black py-3 px-6 rounded-xl shadow-md hover:-translate-y-0.5 active:scale-95 transition-all duration-200 text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer"
                 >
                   <Sparkles className="w-4 h-4 text-vibrant-yellow" />
                   Cotizar mi Servicio
@@ -195,7 +193,7 @@ export default function App() {
                 <button
                   id="hero-go-advisor"
                   onClick={() => scrollToSection("ai-advisor")}
-                  className="bg-vibrant-turquoise hover:bg-vibrant-turquoise-hover text-white font-black py-4 px-8 rounded-2xl shadow-xl hover:-translate-y-0.5 active:scale-95 transition-all duration-200 text-sm flex items-center justify-center gap-2 cursor-pointer"
+                  className="bg-vibrant-turquoise hover:bg-vibrant-turquoise-hover text-white font-black py-3 px-6 rounded-xl shadow-md hover:-translate-y-0.5 active:scale-95 transition-all duration-200 text-xs sm:text-sm flex items-center justify-center gap-2 cursor-pointer"
                 >
                   Asesoría de Estilismo IA
                   <ChevronRight className="w-4 h-4 text-white" />
@@ -203,38 +201,38 @@ export default function App() {
               </div>
 
               {/* Service assurances ticks list */}
-              <div className="grid grid-cols-2 gap-y-3 gap-x-6 max-w-md mx-auto lg:mx-0 pt-4 border-t-2 border-vibrant-dark/10 text-left font-bold text-xs text-vibrant-dark/80">
-                <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 rounded-full bg-vibrant-turquoise text-white flex items-center justify-center flex-shrink-0">
-                    <Check className="w-3 h-3 stroke-[3]" />
+              <div className="grid grid-cols-2 gap-y-2.5 gap-x-4 max-w-md mx-auto lg:mx-0 pt-3 border-t-2 border-vibrant-dark/10 text-left font-bold text-[11px] text-vibrant-dark/80">
+                <div className="flex items-center gap-1.5">
+                  <div className="w-3.5 h-3.5 rounded-full bg-vibrant-turquoise text-white flex items-center justify-center flex-shrink-0">
+                    <Check className="w-2.5 h-2.5 stroke-[3]" />
                   </div>
-                  Shampoos Orgánicos Hipoalergénicos
+                  Shampoos Orgánicos
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 rounded-full bg-vibrant-turquoise text-white flex items-center justify-center flex-shrink-0">
-                    <Check className="w-3 h-3 stroke-[3]" />
+                <div className="flex items-center gap-1.5">
+                  <div className="w-3.5 h-3.5 rounded-full bg-vibrant-turquoise text-white flex items-center justify-center flex-shrink-0">
+                    <Check className="w-2.5 h-2.5 stroke-[3]" />
                   </div>
-                  Estilistas Certificados Co-Amigables
+                  Estilistas Certificados
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 rounded-full bg-vibrant-turquoise text-white flex items-center justify-center flex-shrink-0">
-                    <Check className="w-3 h-3 stroke-[3]" />
+                <div className="flex items-center gap-1.5">
+                  <div className="w-3.5 h-3.5 rounded-full bg-vibrant-turquoise text-white flex items-center justify-center flex-shrink-0">
+                    <Check className="w-2.5 h-2.5 stroke-[3]" />
                   </div>
-                  Vehículos Asegurados & Desinfectados
+                  Vehículos Desinfectados
                 </div>
-                <div className="flex items-center gap-2">
-                  <div className="w-4 h-4 rounded-full bg-vibrant-turquoise text-white flex items-center justify-center flex-shrink-0">
-                    <Check className="w-3 h-3 stroke-[3]" />
+                <div className="flex items-center gap-1.5">
+                  <div className="w-3.5 h-3.5 rounded-full bg-vibrant-turquoise text-white flex items-center justify-center flex-shrink-0">
+                    <Check className="w-2.5 h-2.5 stroke-[3]" />
                   </div>
-                  Control Estrés Etológico
+                  Etológica Co-Amigable
                 </div>
               </div>
             </div>
 
             {/* Hero Graphical Representation right */}
-            <div className="lg:col-span-12 xl:col-span-5 relative mt-8 lg:mt-0 flex justify-center items-center">
+            <div className="lg:col-span-12 xl:col-span-5 relative mt-4 lg:mt-0 flex justify-center items-center">
               {/* Premium Hero Circle Mask Frame */}
-              <div className="relative w-[310px] h-[310px] sm:w-[380px] sm:h-[380px] rounded-full overflow-hidden border-8 border-white shadow-2xl group select-none">
+              <div className="relative w-[260px] h-[260px] sm:w-[320px] sm:h-[320px] rounded-full overflow-hidden border-4 border-white shadow-xl group select-none">
                 <img 
                   src="https://images.unsplash.com/photo-1544568100-847a948585b9?auto=format&fit=crop&q=80&w=800" 
                   alt="Perro feliz en Studio Pet" 
@@ -243,27 +241,27 @@ export default function App() {
                 />
                 
                 {/* Embedded badge over photo */}
-                <div className="absolute top-6 left-6 bg-vibrant-dark/95 backdrop-blur-md text-white px-3 py-1.5 rounded-xl shadow-lg flex items-center gap-1.5 z-10 border border-white/10">
-                  <Star className="w-3.5 h-3.5 fill-vibrant-yellow text-vibrant-yellow" />
-                  <span className="font-mono text-[10px] font-black tracking-wider uppercase">Servicio Premium 5★</span>
+                <div className="absolute top-4 left-4 bg-vibrant-dark/95 backdrop-blur-md text-white px-2.5 py-1 rounded-lg shadow-md flex items-center gap-1 z-10 border border-white/10">
+                  <Star className="w-3 h-3 fill-vibrant-yellow text-vibrant-yellow" />
+                  <span className="font-mono text-[9px] font-black tracking-wider uppercase">Servicio Premium 5★</span>
                 </div>
               </div>
 
               {/* Floating review card visual decoration */}
-              <div className="absolute bottom-8 -left-4 sm:-left-12 bg-white p-5 rounded-[28px] shadow-xl border-2 border-vibrant-dark/10 max-w-xs flex gap-3.5 animate-bounce delay-1000">
-                <span className="text-3xl text-vibrant-red">💖</span>
+              <div className="absolute bottom-4 -left-2 sm:-left-6 bg-white p-4 rounded-[22px] shadow-lg border-2 border-vibrant-dark/10 max-w-[210px] sm:max-w-xs flex gap-2.5 animate-none">
+                <span className="text-2xl text-vibrant-red">💖</span>
                 <div>
-                  <div className="flex gap-0.5 text-vibrant-yellow mb-1">
-                    <Star className="w-3 h-3 fill-vibrant-red text-vibrant-red" />
-                    <Star className="w-3 h-3 fill-vibrant-red text-vibrant-red" />
-                    <Star className="w-3 h-3 fill-vibrant-red text-vibrant-red" />
-                    <Star className="w-3 h-3 fill-vibrant-red text-vibrant-red" />
-                    <Star className="w-3 h-3 fill-vibrant-red text-vibrant-red" />
+                  <div className="flex gap-0.5 text-vibrant-yellow mb-0.5">
+                    <Star className="w-2.5 h-2.5 fill-vibrant-red text-vibrant-red" />
+                    <Star className="w-2.5 h-2.5 fill-vibrant-red text-vibrant-red" />
+                    <Star className="w-2.5 h-2.5 fill-vibrant-red text-vibrant-red" />
+                    <Star className="w-2.5 h-2.5 fill-vibrant-red text-vibrant-red" />
+                    <Star className="w-2.5 h-2.5 fill-vibrant-red text-vibrant-red" />
                   </div>
-                  <p className="text-[11px] text-vibrant-dark leading-tight font-sans italic font-bold">
-                    "Volvió oliendo delicioso y súper tranquila. El servicio de recogida gratis es una maravilla."
+                  <p className="text-[10px] text-vibrant-dark leading-tight font-sans italic font-bold">
+                    "Volvió oliendo delicioso y súper tranquila. El servicio gratis es genial."
                   </p>
-                  <span className="text-[9px] text-vibrant-brown block mt-1 font-mono uppercase font-black tracking-wider">— Mamá de Milka (Shih Tzu)</span>
+                  <span className="text-[8px] text-vibrant-brown block mt-0.5 font-mono uppercase font-black tracking-wider">— Mamá de Milka</span>
                 </div>
               </div>
             </div>
@@ -272,77 +270,77 @@ export default function App() {
       </section>
 
       {/* SECTION 2: SERVICES BREAKDOWN DISPLAY */}
-      <section id="services" className="py-24 bg-white border-y-2 border-vibrant-dark/10 relative">
+      <section id="services" className="py-10 sm:py-14 bg-white border-y-2 border-vibrant-dark/10 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Header layout */}
-          <div className="text-center max-w-xl mx-auto mb-16 space-y-2">
+          <div className="text-center max-w-xl mx-auto mb-8 space-y-1.5">
             <span className="text-[10px] font-mono tracking-widest text-vibrant-red uppercase font-black block">
               Tratamientos VIP Diseñados para ellos
             </span>
-            <h2 className="font-sans font-black text-3xl sm:text-4xl text-vibrant-dark tracking-tight leading-tight">
+            <h2 className="font-sans font-black text-2xl sm:text-3xl text-vibrant-dark tracking-tight leading-tight">
               Nuestra Carta de Servicios & Spa
             </h2>
-            <p className="text-vibrant-dark/70 font-sans text-sm sm:text-base font-semibold">
-              Higiene, estilismo y restauración profunda para el manto y la dermis utilizando únicamente productos naturales de alta gama.
+            <p className="text-vibrant-dark/70 font-sans text-xs sm:text-sm font-semibold">
+              Higiene, estilismo y restauración para el manto utilizando productos orgánicos de alta gama.
             </p>
           </div>
 
           {/* Cards dynamic list block */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-5 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
             {SERVICES.map((srv) => (
               <div
                 key={srv.id}
                 id={`service-card-item-${srv.id}`}
-                className="bg-vibrant-bg rounded-[32px] p-6 border-2 border-vibrant-dark/15 shadow-sm hover:shadow-lg hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
+                className="bg-vibrant-bg rounded-[24px] p-4 sm:p-5 border-2 border-vibrant-dark/15 shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between"
               >
-                <div className="space-y-4">
+                <div className="space-y-3">
                   {/* Icon and duration header */}
                   <div className="flex justify-between items-start">
-                    <div className="p-3 rounded-2xl bg-vibrant-red/10 text-vibrant-red border border-vibrant-red/20">
-                      {srv.id === "baño-premium" && <Bath className="w-5 h-5" />}
-                      {srv.id === "corte-estilo" && <Scissors className="w-5 h-5" />}
-                      {srv.id === "spa-aromaterapia" && <Sparkles className="w-5 h-5" />}
-                      {srv.id === "deslanado-profundo" && <Award className="w-5 h-5" />}
-                      {srv.id === "armonizacion-emocional" && <Heart className="w-5 h-5 fill-vibrant-red/15" />}
+                    <div className="p-2.5 rounded-xl bg-vibrant-red/10 text-vibrant-red border border-vibrant-red/20">
+                      {srv.id === "baño-premium" && <Bath className="w-4.5 h-4.5" />}
+                      {srv.id === "corte-estilo" && <Scissors className="w-4.5 h-4.5" />}
+                      {srv.id === "spa-aromaterapia" && <Sparkles className="w-4.5 h-4.5" />}
+                      {srv.id === "deslanado-profundo" && <Award className="w-4.5 h-4.5" />}
+                      {srv.id === "armonizacion-emocional" && <Heart className="w-4.5 h-4.5 fill-vibrant-red/15" />}
                     </div>
-                    <span className="font-mono text-[10px] text-vibrant-brown bg-white border-2 border-vibrant-dark/10 rounded-full px-2.5 py-1 flex items-center gap-1 font-bold">
+                    <span className="font-mono text-[9px] text-vibrant-brown bg-white border-2 border-vibrant-dark/10 rounded-full px-2 py-0.5 flex items-center gap-1 font-bold">
                       <Clock className="w-3 h-3 text-vibrant-red" /> {srv.duration}
                     </span>
                   </div>
 
                   {/* Pricing tag */}
                   <div>
-                    <h3 className="font-sans font-black text-lg text-vibrant-dark leading-tight">{srv.name}</h3>
-                    <div className="mt-1.5 flex items-baseline gap-1">
-                      <span className="text-xs text-vibrant-dark/60 font-black">Desde</span>
-                      <span className="text-2xl font-black font-sans text-vibrant-red">{formatCOP(srv.basePrice)}</span>
-                      <span className="text-[10px] text-vibrant-dark/60 font-mono font-bold">*Mascotas Chicas</span>
+                    <h3 className="font-sans font-black text-base text-vibrant-dark leading-tight">{srv.name}</h3>
+                    <div className="mt-1 flex items-baseline gap-1">
+                      <span className="text-[10px] text-vibrant-dark/60 font-black">Desde</span>
+                      <span className="text-xl font-black font-sans text-vibrant-red">{formatCOP(srv.basePrice)}</span>
+                      <span className="text-[9px] text-vibrant-dark/60 font-mono font-bold">*Mascotas Chicas</span>
                     </div>
-                    <p className="text-xs text-vibrant-dark/70 mt-2 font-sans font-medium leading-relaxed">{srv.description}</p>
+                    <p className="text-[11px] text-vibrant-dark/70 mt-1 font-sans font-medium leading-relaxed">{srv.description}</p>
                   </div>
 
                   {/* Features list bullet layout */}
-                  <ul className="space-y-1.5 pt-4 border-t-2 border-vibrant-dark/5 text-left font-semibold">
+                  <ul className="space-y-1 pt-2 border-t border-vibrant-dark/10 text-left font-semibold">
                     {srv.features.slice(0, 5).map((f, fIdx) => (
-                      <li key={fIdx} className="text-vibrant-dark/80 font-sans text-xs flex items-start gap-1.5">
-                        <Check className="w-3.5 h-3.5 text-vibrant-turquoise shrink-0 mt-0.5 stroke-[3]" />
+                      <li key={fIdx} className="text-vibrant-dark/80 font-sans text-[11px] leading-snug flex items-start gap-1">
+                        <Check className="w-3 h-3 text-vibrant-turquoise shrink-0 mt-0.5 stroke-[3]" />
                         <span>{f.replace(/^[^\sA-Za-zñáéíóú]+/g, "").trim()}</span>
                       </li>
                     ))}
                     {srv.features.length > 5 && (
-                      <li className="text-[10px] text-vibrant-red font-black font-sans pt-1">
-                        + {srv.features.length - 5} tratamientos adicionales ordinarios
+                      <li className="text-[9px] text-vibrant-red font-black font-sans pt-0.5">
+                        + {srv.features.length - 5} mimos adicionales ordinarios
                       </li>
                     )}
                   </ul>
                 </div>
 
-                <div className="mt-6 pt-4 border-t-2 border-vibrant-dark/5">
+                <div className="mt-4 pt-3 border-t border-vibrant-dark/10">
                   <button
                     id={`apply-preset-btn-${srv.id}`}
                     type="button"
                     onClick={() => handleApplyServicePreset(srv.id)}
-                    className="w-full text-center py-2.5 rounded-xl border-2 border-vibrant-dark/10 bg-white hover:bg-vibrant-bg text-vibrant-dark text-xs font-black transition-all cursor-pointer shadow-sm hover:shadow active:scale-95"
+                    className="w-full text-center py-2 rounded-xl border border-vibrant-dark/20 bg-white hover:bg-vibrant-bg text-vibrant-dark text-[11px] font-black transition-all cursor-pointer shadow-sm hover:shadow active:scale-95"
                   >
                     Cotizar este Plan
                   </button>
@@ -351,65 +349,39 @@ export default function App() {
             ))}
           </div>
 
-          {/* Sizing description informational banner */}
-          <div className="mt-12 p-6 sm:p-8 rounded-[36px] bg-vibrant-yellow border-2 border-vibrant-dark/20 flex flex-col md:flex-row gap-6 justify-between items-center max-w-5xl mx-auto shadow-md">
-            <div className="flex gap-3.5 items-start">
-              <div className="p-2.5 bg-vibrant-dark text-white rounded-full shrink-0">
-                <Star className="w-5 h-5 fill-vibrant-yellow text-vibrant-yellow" />
-              </div>
-              <div>
-                <span className="font-black font-sans text-vibrant-dark text-base block">Multiplicador por Categoría de Tamaño</span>
-                <p className="text-xs text-vibrant-brown font-semibold mt-0.5 leading-relaxed max-w-xl">
-                  Para perros medianos, grandes o gigantes, aplicamos un factor de escala justo sobre la tarifa base para cubrir el mayor uso de productos veterinarios orgánicos y el valioso tiempo de nuestros estilistas.
-                </p>
-              </div>
-            </div>
-
-            <div className="flex flex-wrap gap-2.5 justify-center">
-              {Object.keys(SIZE_FACTORS).map((key) => {
-                const sz = SIZE_FACTORS[key as keyof typeof SIZE_FACTORS];
-                return (
-                  <span key={key} className="px-4 py-2 rounded-xl bg-white border-2 border-vibrant-dark/10 text-xs font-black font-mono text-vibrant-dark shadow-sm">
-                    {sz.name}: {sz.factor}x
-                  </span>
-                );
-              })}
-            </div>
-          </div>
-
           {/* SIMULADOR / ALERTA DE RETORNO INTERACTIVO */}
-          <div id="simulador-retorno-container" className="mt-8 p-6 sm:p-8 rounded-[36px] bg-emerald-500/10 border-2 border-emerald-500/20 max-w-5xl mx-auto shadow-sm grid grid-cols-1 md:grid-cols-12 gap-6 items-center">
-            <div className="md:col-span-7 space-y-3">
-              <span className="px-3 py-1 bg-emerald-500 text-white text-[10px] font-black font-mono tracking-wider uppercase rounded-full inline-block">
+          <div id="simulador-retorno-container" className="mt-8 p-4 sm:p-5 rounded-[24px] bg-emerald-500/10 border-2 border-emerald-500/20 max-w-5xl mx-auto shadow-sm grid grid-cols-1 md:grid-cols-12 gap-5 items-center">
+            <div className="md:col-span-7 space-y-2">
+              <span className="px-2.5 py-0.5 bg-emerald-500 text-white text-[9px] font-black font-mono tracking-wider uppercase rounded-full inline-block">
                 🕒 Alerta de Retorno Automática
               </span>
-              <h3 className="font-sans font-black text-xl text-vibrant-dark tracking-tight">
+              <h3 className="font-sans font-black text-lg text-vibrant-dark tracking-tight">
                 Planifica tus Sesiones de Cuidado Higiénico (Retorno cada 60 días)
               </h3>
-              <p className="text-xs text-vibrant-dark/85 font-semibold leading-relaxed">
-                El manto de perros y gatos acumula grasa, subpelo muerto y nudos. El periodo ideal recomendado en Colombia es de <strong>2 meses (60 días)</strong> para asegurar una piel sana, libre de comezón, oídos limpios y uñas cortas.
+              <p className="text-[11px] text-vibrant-dark/85 font-semibold leading-relaxed">
+                El manto acumula grasa and nudos. El periodo ideal recomendado en Bogotá/Colombia es de <strong>2 meses</strong> para asegurar una piel sana and oídos limpios.
               </p>
-              <div className="bg-white/85 p-3.5 rounded-2xl border border-emerald-500/10 text-xs text-vibrant-dark/75 leading-normal font-sans font-semibold">
-                <strong>¿Cómo funciona?</strong> Ingresa una fecha de servicio (por ejemplo, hoy) y nuestro sistema simulará la alerta de retorno óptima de tu mascota.
+              <div className="bg-white/80 p-2.5 rounded-xl border border-emerald-500/10 text-[11px] text-vibrant-dark/75 leading-normal font-sans font-semibold">
+                <strong>¿Cómo funciona?</strong> Pon la fecha de hoy y se simulará la recomendación de retorno automática.
               </div>
             </div>
 
-            <div className="md:col-span-5 bg-white p-6 rounded-3xl border-2 border-emerald-500/15 space-y-4">
-              <div className="space-y-1.5 font-bold text-xs text-vibrant-dark">
-                <label className="block text-[11px] font-black uppercase tracking-wider text-vibrant-dark/65">
+            <div className="md:col-span-5 bg-white p-4 rounded-2xl border-2 border-emerald-500/15 space-y-3">
+              <div className="space-y-1 font-bold text-xs text-vibrant-dark">
+                <label className="block text-[10px] font-black uppercase tracking-wider text-vibrant-dark/65">
                   Fecha de tu última cita o de hoy:
                 </label>
                 <input
                   type="date"
                   value={returnSimDate}
                   onChange={(e) => setReturnSimDate(e.target.value)}
-                  className="w-full px-3.5 py-2.5 rounded-xl border-2 border-vibrant-dark/15 font-sans text-xs focus:outline-none focus:border-emerald-500 bg-vibrant-bg/40 font-semibold text-vibrant-dark"
+                  className="w-full px-3 py-2 rounded-lg border-2 border-vibrant-dark/15 font-sans text-xs focus:outline-none focus:border-emerald-500 bg-vibrant-bg/40 font-semibold text-vibrant-dark"
                 />
               </div>
 
-              <div className="bg-emerald-50 py-3.5 px-4 rounded-2xl border border-emerald-200 text-center">
-                <span className="text-[10px] font-mono font-black uppercase text-emerald-800 tracking-wider block mb-1">📅 Recomendación Próxima Cita</span>
-                <span className="text-[13px] sm:text-sm font-black text-slate-800 font-sans">
+              <div className="bg-emerald-50 py-2.5 px-3 rounded-xl border border-emerald-200 text-center">
+                <span className="text-[9px] font-mono font-black uppercase text-emerald-800 tracking-wider block mb-0.5">📅 Recomendación Próxima Cita</span>
+                <span className="text-xs sm:text-xs font-black text-slate-800 font-sans">
                   {getFutureDate(returnSimDate).formatted}
                 </span>
               </div>
@@ -427,9 +399,9 @@ export default function App() {
                     el.scrollIntoView({ behavior: "smooth" });
                   }
                 }}
-                className="w-full text-center py-3 rounded-2xl bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-black transition-all cursor-pointer shadow-md hover:shadow-lg active:scale-95 flex items-center justify-center gap-1.5"
+                className="w-full text-center py-2 rounded-xl bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-black transition-all cursor-pointer shadow-md hover:shadow active:scale-95 flex items-center justify-center gap-1.5"
               >
-                <Clock className="w-4 h-4 text-white shrink-0" />
+                <Clock className="w-3.5 h-3.5 text-white shrink-0" />
                 Agendar con Fecha Sugerida
               </button>
             </div>
@@ -438,13 +410,13 @@ export default function App() {
       </section>
 
       {/* SECTION 3: BEFORE / AFTER REVEAL SLIDER */}
-      <section className="py-24 bg-vibrant-bg border-b-2 border-vibrant-dark/10">
+      <section className="py-10 sm:py-14 bg-vibrant-bg border-b-2 border-vibrant-dark/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-xl mx-auto mb-12 space-y-2">
-            <span className="text-[11px] font-mono tracking-widest text-vibrant-red uppercase font-black block">Galería Interactiva</span>
-            <h2 className="font-sans font-black text-3xl text-vibrant-dark tracking-tight">El Resultado Profesional de Studio Pet</h2>
-            <p className="text-vibrant-dark/70 font-sans text-sm font-semibold">
-              Tratamientos diseñados para devolverle el brillo al manto, deslanar de forma efectiva y asegurar una piel saludable y súper hidratada.
+          <div className="text-center max-w-xl mx-auto mb-8 space-y-1.5">
+            <span className="text-[10px] font-mono tracking-widest text-vibrant-red uppercase font-black block">Galería Interactiva</span>
+            <h2 className="font-sans font-black text-2xl text-vibrant-dark tracking-tight">El Resultado de Studio Pet</h2>
+            <p className="text-vibrant-dark/70 font-sans text-xs font-semibold">
+              Tratamientos diseñados para devolverle el brillo al manto y asegurar una piel saludable y súper hidratada.
             </p>
           </div>
 
@@ -453,89 +425,89 @@ export default function App() {
       </section>
 
       {/* SECTION 4: PROCESS / HOW IT WORKS */}
-      <section className="py-24 bg-white border-b-2 border-vibrant-dark/10">
+      <section className="py-10 sm:py-14 bg-white border-b-2 border-vibrant-dark/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-xl mx-auto mb-16 space-y-2">
-            <span className="text-[11px] font-mono tracking-widest text-vibrant-red uppercase font-black block">Comodidad y Seguridad Total</span>
-            <h2 className="font-sans font-black text-3xl text-vibrant-dark tracking-tight">Nuestro Procedimiento Puerta a Puerta</h2>
-            <p className="text-vibrant-dark/70 font-sans text-sm font-semibold">
+          <div className="text-center max-w-xl mx-auto mb-8 space-y-1.5">
+            <span className="text-[10px] font-mono tracking-widest text-vibrant-red uppercase font-black block">Comodidad y Seguridad Total</span>
+            <h2 className="font-sans font-black text-2xl text-vibrant-dark tracking-tight">Nuestro Procedimiento Puerta a Puerta</h2>
+            <p className="text-vibrant-dark/70 font-sans text-xs font-semibold">
               Pensado al 100% en la conveniencia de los propietarios y en una experiencia libre de estrés o temores para tus peludos.
             </p>
           </div>
 
           {/* Timeline steps blocks */}
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-5xl mx-auto relative">
-            <div className="hidden md:block absolute top-[50px] left-[15%] right-[15%] h-0.5 bg-gradient-to-r from-vibrant-red/30 to-vibrant-yellow/80 -z-10" />
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto relative">
+            <div className="hidden lg:block absolute top-[40px] left-[15%] right-[15%] h-0.5 bg-gradient-to-r from-vibrant-red/30 to-vibrant-yellow/80 -z-10" />
             
-            <div className="text-center space-y-4 group">
-              <div className="relative w-24 h-20 mx-auto transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
+            <div className="text-center space-y-2 group">
+              <div className="relative w-20 h-16 mx-auto transition-transform duration-300 group-hover:scale-105">
                 {/* Toes */}
-                <div className="absolute top-2 left-[12px] w-[14px] h-[14px] bg-vibrant-red rounded-full border border-vibrant-dark/15 shadow-sm transition-transform duration-300 group-hover:-translate-y-1" />
-                <div className="absolute top-0 left-[29px] w-[16px] h-[16px] bg-vibrant-red rounded-full border border-vibrant-dark/15 shadow-sm transition-transform duration-300 group-hover:-translate-y-1.5" />
-                <div className="absolute top-0 left-[51px] w-[16px] h-[16px] bg-vibrant-red rounded-full border border-vibrant-dark/15 shadow-sm transition-transform duration-300 group-hover:-translate-y-1.5" />
-                <div className="absolute top-2 left-[70px] w-[14px] h-[14px] bg-vibrant-red rounded-full border border-vibrant-dark/15 shadow-sm transition-transform duration-300 group-hover:-translate-y-1" />
+                <div className="absolute top-1 left-[10px] w-[11px] h-[11px] bg-vibrant-red rounded-full border border-vibrant-dark/15 shadow-sm" />
+                <div className="absolute top-0 left-[24px] w-[13px] h-[13px] bg-vibrant-red rounded-full border border-vibrant-dark/15 shadow-sm" />
+                <div className="absolute top-0 left-[43px] w-[13px] h-[13px] bg-vibrant-red rounded-full border border-vibrant-dark/15 shadow-sm" />
+                <div className="absolute top-1 left-[57px] w-[11px] h-[11px] bg-vibrant-red rounded-full border border-vibrant-dark/15 shadow-sm" />
                 {/* Main Pad */}
-                <div className="absolute bottom-[4px] left-[20px] w-[56px] h-[48px] bg-vibrant-red text-white rounded-t-2xl rounded-b-[22px] border-2 border-vibrant-dark/15 shadow-md flex items-center justify-center font-sans font-black text-xl transition-transform duration-300 group-hover:scale-105">
+                <div className="absolute bottom-[2px] left-[16px] w-[46px] h-[38px] bg-vibrant-red text-white rounded-t-xl rounded-b-[18px] border-2 border-vibrant-dark/15 shadow-md flex items-center justify-center font-sans font-black text-base">
                   1
                 </div>
               </div>
-              <h3 className="font-black text-vibrant-dark text-base font-sans leading-snug group-hover:text-vibrant-red transition-colors duration-200">Cotizas y Agendas</h3>
-              <p className="text-vibrant-dark/70 text-xs font-semibold leading-relaxed max-w-[210px] mx-auto">
-                Elegir tu mascota y servicios en nuestro cotizador de abajo. La orden se envía directa y limpia a nuestro equipo por WhatsApp.
+              <h3 className="font-black text-vibrant-dark text-sm font-sans leading-snug group-hover:text-vibrant-red transition-colors duration-200">Cotizas y Agendas</h3>
+              <p className="text-vibrant-dark/70 text-[11px] font-semibold leading-relaxed max-w-[190px] mx-auto">
+                Elige tu mascota y servicios en nuestro cotizador de abajo. La orden se envía directa y limpia a nuestro WhatsApp.
               </p>
             </div>
 
-            <div className="text-center space-y-4 group">
-              <div className="relative w-24 h-20 mx-auto transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6">
+            <div className="text-center space-y-2 group">
+              <div className="relative w-20 h-16 mx-auto transition-transform duration-300 group-hover:scale-105">
                 {/* Toes */}
-                <div className="absolute top-2 left-[12px] w-[14px] h-[14px] bg-vibrant-red rounded-full border border-vibrant-dark/15 shadow-sm transition-transform duration-300 group-hover:-translate-y-1" />
-                <div className="absolute top-0 left-[29px] w-[16px] h-[16px] bg-vibrant-red rounded-full border border-vibrant-dark/15 shadow-sm transition-transform duration-300 group-hover:-translate-y-1.5" />
-                <div className="absolute top-0 left-[51px] w-[16px] h-[16px] bg-vibrant-red rounded-full border border-vibrant-dark/15 shadow-sm transition-transform duration-300 group-hover:-translate-y-1.5" />
-                <div className="absolute top-2 left-[70px] w-[14px] h-[14px] bg-vibrant-red rounded-full border border-vibrant-dark/15 shadow-sm transition-transform duration-300 group-hover:-translate-y-1" />
+                <div className="absolute top-1 left-[10px] w-[11px] h-[11px] bg-vibrant-red rounded-full border border-vibrant-dark/15 shadow-sm" />
+                <div className="absolute top-0 left-[24px] w-[13px] h-[13px] bg-vibrant-red rounded-full border border-vibrant-dark/15 shadow-sm" />
+                <div className="absolute top-0 left-[43px] w-[13px] h-[13px] bg-vibrant-red rounded-full border border-vibrant-dark/15 shadow-sm" />
+                <div className="absolute top-1 left-[57px] w-[11px] h-[11px] bg-vibrant-red rounded-full border border-vibrant-dark/15 shadow-sm" />
                 {/* Main Pad */}
-                <div className="absolute bottom-[4px] left-[20px] w-[56px] h-[48px] bg-vibrant-red text-white rounded-t-2xl rounded-b-[22px] border-2 border-vibrant-dark/15 shadow-md flex items-center justify-center font-sans font-black text-xl transition-transform duration-300 group-hover:scale-105">
+                <div className="absolute bottom-[2px] left-[16px] w-[46px] h-[38px] bg-vibrant-red text-white rounded-t-xl rounded-b-[18px] border-2 border-vibrant-dark/15 shadow-md flex items-center justify-center font-sans font-black text-base">
                   2
                 </div>
               </div>
-              <h3 className="font-black text-vibrant-dark text-base font-sans leading-snug group-hover:text-vibrant-red transition-colors duration-200">Recogida Gratis</h3>
-              <p className="text-vibrant-dark/70 text-xs font-semibold leading-relaxed max-w-[210px] mx-auto">
-                Agendamos la ruta y recogemos a tu mascota en la puerta de tu casa o lugar de labor en guacales de alta gama desinfectados.
+              <h3 className="font-black text-vibrant-dark text-sm font-sans leading-snug group-hover:text-vibrant-red transition-colors duration-200">Recogida Gratis</h3>
+              <p className="text-vibrant-dark/70 text-[11px] font-semibold leading-relaxed max-w-[190px] mx-auto">
+                Agendamos la ruta y recogemos a tu mascota en la puerta de tu casa en guacales de alta gama desinfectados.
               </p>
             </div>
 
-            <div className="text-center space-y-4 group">
-              <div className="relative w-24 h-20 mx-auto transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
+            <div className="text-center space-y-2 group">
+              <div className="relative w-20 h-16 mx-auto transition-transform duration-300 group-hover:scale-105">
                 {/* Toes */}
-                <div className="absolute top-2 left-[12px] w-[14px] h-[14px] bg-vibrant-red rounded-full border border-vibrant-dark/15 shadow-sm transition-transform duration-300 group-hover:-translate-y-1" />
-                <div className="absolute top-0 left-[29px] w-[16px] h-[16px] bg-vibrant-red rounded-full border border-vibrant-dark/15 shadow-sm transition-transform duration-300 group-hover:-translate-y-1.5" />
-                <div className="absolute top-0 left-[51px] w-[16px] h-[16px] bg-vibrant-red rounded-full border border-vibrant-dark/15 shadow-sm transition-transform duration-300 group-hover:-translate-y-1.5" />
-                <div className="absolute top-2 left-[70px] w-[14px] h-[14px] bg-vibrant-red rounded-full border border-vibrant-dark/15 shadow-sm transition-transform duration-300 group-hover:-translate-y-1" />
+                <div className="absolute top-1 left-[10px] w-[11px] h-[11px] bg-vibrant-red rounded-full border border-vibrant-dark/15 shadow-sm" />
+                <div className="absolute top-0 left-[24px] w-[13px] h-[13px] bg-vibrant-red rounded-full border border-vibrant-dark/15 shadow-sm" />
+                <div className="absolute top-0 left-[43px] w-[13px] h-[13px] bg-vibrant-red rounded-full border border-vibrant-dark/15 shadow-sm" />
+                <div className="absolute top-1 left-[57px] w-[11px] h-[11px] bg-vibrant-red rounded-full border border-vibrant-dark/15 shadow-sm" />
                 {/* Main Pad */}
-                <div className="absolute bottom-[4px] left-[20px] w-[56px] h-[48px] bg-vibrant-red text-white rounded-t-2xl rounded-b-[22px] border-2 border-vibrant-dark/15 shadow-md flex items-center justify-center font-sans font-black text-xl transition-transform duration-300 group-hover:scale-105">
+                <div className="absolute bottom-[2px] left-[16px] w-[46px] h-[38px] bg-vibrant-red text-white rounded-t-xl rounded-b-[18px] border-2 border-vibrant-dark/15 shadow-md flex items-center justify-center font-sans font-black text-base">
                   3
                 </div>
               </div>
-              <h3 className="font-black text-vibrant-dark text-base font-sans leading-snug group-hover:text-vibrant-red transition-colors duration-200">Estética & Mimos</h3>
-              <p className="text-vibrant-dark/70 text-xs font-semibold leading-relaxed max-w-[210px] mx-auto">
-                Consentimos a tu amigo con baño, masajes, cosmetología veterinaria fina, limpieza profunda y corte fino de garras y pelo.
+              <h3 className="font-black text-vibrant-dark text-sm font-sans leading-snug group-hover:text-vibrant-red transition-colors duration-200">Estética & Mimos</h3>
+              <p className="text-vibrant-dark/70 text-[11px] font-semibold leading-relaxed max-w-[190px] mx-auto">
+                Consentimos a tu amigo con baño, masajes, cosmética veterinaria fina, limpieza profunda y corte de garras.
               </p>
             </div>
 
-            <div className="text-center space-y-4 group">
-              <div className="relative w-24 h-20 mx-auto transition-transform duration-300 group-hover:scale-110 group-hover:-rotate-6">
+            <div className="text-center space-y-2 group">
+              <div className="relative w-20 h-16 mx-auto transition-transform duration-300 group-hover:scale-105">
                 {/* Toes */}
-                <div className="absolute top-2 left-[12px] w-[14px] h-[14px] bg-vibrant-red rounded-full border border-vibrant-dark/15 shadow-sm transition-transform duration-300 group-hover:-translate-y-1" />
-                <div className="absolute top-0 left-[29px] w-[16px] h-[16px] bg-vibrant-red rounded-full border border-vibrant-dark/15 shadow-sm transition-transform duration-300 group-hover:-translate-y-1.5" />
-                <div className="absolute top-0 left-[51px] w-[16px] h-[16px] bg-vibrant-red rounded-full border border-vibrant-dark/15 shadow-sm transition-transform duration-300 group-hover:-translate-y-1.5" />
-                <div className="absolute top-2 left-[70px] w-[14px] h-[14px] bg-vibrant-red rounded-full border border-vibrant-dark/15 shadow-sm transition-transform duration-300 group-hover:-translate-y-1" />
+                <div className="absolute top-1 left-[10px] w-[11px] h-[11px] bg-vibrant-red rounded-full border border-vibrant-dark/15 shadow-sm" />
+                <div className="absolute top-0 left-[24px] w-[13px] h-[13px] bg-vibrant-red rounded-full border border-vibrant-dark/15 shadow-sm" />
+                <div className="absolute top-0 left-[43px] w-[13px] h-[13px] bg-vibrant-red rounded-full border border-vibrant-dark/15 shadow-sm" />
+                <div className="absolute top-1 left-[57px] w-[11px] h-[11px] bg-vibrant-red rounded-full border border-vibrant-dark/15 shadow-sm" />
                 {/* Main Pad */}
-                <div className="absolute bottom-[4px] left-[20px] w-[56px] h-[48px] bg-vibrant-red text-white rounded-t-2xl rounded-b-[22px] border-2 border-vibrant-dark/15 shadow-md flex items-center justify-center font-sans font-black text-xl transition-transform duration-300 group-hover:scale-105">
+                <div className="absolute bottom-[2px] left-[16px] w-[46px] h-[38px] bg-vibrant-red text-white rounded-t-xl rounded-b-[18px] border-2 border-vibrant-dark/15 shadow-md flex items-center justify-center font-sans font-black text-base">
                   4
                 </div>
               </div>
-              <h3 className="font-black text-vibrant-dark text-base font-sans leading-snug group-hover:text-vibrant-red transition-colors duration-200">Retorno Feliz</h3>
-              <p className="text-vibrant-dark/70 text-xs font-semibold leading-relaxed max-w-[210px] mx-auto">
-                Te lo regresamos en el tiempo acordado oliendo delicioso, hiper limpio, dócil y luciendo un peinado fabuloso.
+              <h3 className="font-black text-vibrant-dark text-sm font-sans leading-snug group-hover:text-vibrant-red transition-colors duration-200">Retorno Feliz</h3>
+              <p className="text-vibrant-dark/70 text-[11px] font-semibold leading-relaxed max-w-[190px] mx-auto">
+                Te lo regresamos en el tiempo acordado oliendo delicioso, súper limpio, dócil y luciendo un peinado fabuloso.
               </p>
             </div>
           </div>
@@ -543,17 +515,17 @@ export default function App() {
       </section>
 
       {/* SECTION 5: AI ADVISOR */}
-      <section id="ai-advisor" className="py-24 bg-vibrant-bg border-b-2 border-vibrant-dark/10">
+      <section id="ai-advisor" className="py-10 sm:py-14 bg-vibrant-bg border-b-2 border-vibrant-dark/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-xl mx-auto mb-16 space-y-2">
-            <span className="text-[11px] font-mono tracking-widest text-vibrant-red uppercase font-black block">
+          <div className="text-center max-w-xl mx-auto mb-8 space-y-1.5">
+            <span className="text-[10px] font-mono tracking-widest text-vibrant-red uppercase font-black block">
               Dermatología y Estética Inteligente
             </span>
-            <h2 className="font-sans font-black text-3xl text-vibrant-dark tracking-tight">
+            <h2 className="font-sans font-black text-2xl text-vibrant-dark tracking-tight">
               Asesoría de Estilismo y Cuidado IA
             </h2>
-            <p className="text-vibrant-dark/70 font-sans text-sm font-semibold">
-              ¿Tu mascota tiene piel sensible, caspa, enredos graves o muda masiva de pelo? Consulta a nuestro veterinario virtual senior y recibe planificaciones cosméticas ideales.
+            <p className="text-vibrant-dark/70 font-sans text-xs font-semibold">
+              ¿Tu mascota tiene piel sensible, enredos graves o muda masiva? Consulta a nuestro veterinario virtual y recibe planificaciones cosméticas ideales.
             </p>
           </div>
 
@@ -562,17 +534,17 @@ export default function App() {
       </section>
 
       {/* SECTION 6: SERVICE CALCULATOR */}
-      <section id="calculator" className="py-24 bg-vibrant-yellow/15 border-b-2 border-vibrant-dark/10">
+      <section id="calculator" className="py-10 sm:py-14 bg-vibrant-yellow/15 border-b-2 border-vibrant-dark/10">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-xl mx-auto mb-16 space-y-2">
-            <span className="text-[11px] font-mono tracking-widest text-vibrant-dark/60 uppercase font-black block">
+          <div className="text-center max-w-xl mx-auto mb-8 space-y-1.5">
+            <span className="text-[10px] font-mono tracking-widest text-vibrant-dark/60 uppercase font-black block">
               Cotizador Inteligente 2026
             </span>
-            <h2 className="font-sans font-black text-3xl text-vibrant-dark tracking-tight">
+            <h2 className="font-sans font-black text-2xl text-vibrant-dark tracking-tight">
               Agenda tu Cita & Cotiza en Línea
             </h2>
-            <p className="text-vibrant-dark/70 font-sans text-sm font-semibold">
-              Completa el formulario en 4 sencillos pasos. El valor total se calcula en tiempo real para brindarte transparencia absoluta.
+            <p className="text-vibrant-dark/70 font-sans text-xs font-semibold">
+              Completa el formulario en sencillos pasos. El valor total se calcula en tiempo real para brindarte transparencia absoluta.
             </p>
           </div>
 
@@ -586,17 +558,17 @@ export default function App() {
       </section>
 
       {/* SECTION 7: FAQS ACCORDION */}
-      <section id="faqs" className="py-24 bg-white">
+      <section id="faqs" className="py-10 sm:py-14 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-xl mx-auto mb-16 space-y-2">
-            <span className="text-[11px] font-mono tracking-widest text-vibrant-red uppercase font-black block">
+          <div className="text-center max-w-xl mx-auto mb-8 space-y-1.5">
+            <span className="text-[10px] font-mono tracking-widest text-vibrant-red uppercase font-black block">
               Esclarecemos todas tus dudas
             </span>
-            <h2 className="font-sans font-black text-3xl text-vibrant-dark tracking-tight">
+            <h2 className="font-sans font-black text-2xl text-vibrant-dark tracking-tight">
               Preguntas Frecuentes
             </h2>
-            <p className="text-vibrant-dark/70 font-sans text-sm font-semibold">
-              ¿Tienes dudas sobre los traslados, métodos de lavado, adoctrinamiento o formas de pago? Despliega nuestras respuestas oficiales.
+            <p className="text-vibrant-dark/70 font-sans text-xs font-semibold">
+              ¿Tienes dudas sobre los traslados, métodos de lavado o formas de pago? Despliega nuestras respuestas oficiales.
             </p>
           </div>
 
@@ -605,12 +577,12 @@ export default function App() {
       </section>
 
       {/* FOOTER CONTAINER */}
-      <footer className="bg-vibrant-dark text-white pt-16 pb-12 border-t-4 border-vibrant-red shrink-0">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-12">
+      <footer className="bg-vibrant-dark text-white pt-10 pb-8 border-t-4 border-vibrant-red shrink-0">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-8">
           {/* Main layout */}
-          <div className="grid grid-cols-1 md:grid-cols-12 gap-8 items-start">
-            <div className="md:col-span-12 lg:col-span-5 space-y-4">
-              <span className="font-sans font-black text-2xl text-white tracking-tight flex items-center gap-2">
+          <div className="grid grid-cols-1 md:grid-cols-12 gap-6 items-start">
+            <div className="md:col-span-12 lg:col-span-5 space-y-3">
+              <span className="font-sans font-black text-xl text-white tracking-tight flex items-center gap-2">
                 <div className="w-10 h-10 bg-vibrant-red rounded-xl flex items-center justify-center shadow-lg transform -rotate-3 hover:rotate-0 duration-150">
                   <span className="text-white text-xl">🐾</span>
                 </div>

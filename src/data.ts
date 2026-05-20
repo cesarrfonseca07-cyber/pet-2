@@ -66,21 +66,6 @@ export const SERVICES: Service[] = [
       "🌬️ Oxigenación profunda de la dermis para evitar dermatitis",
       "🍂 Ideal para Golden, Husky, Pomerania, Samoyedo o gatos de pelo denso"
     ]
-  },
-  {
-    id: "armonizacion-emocional",
-    name: "Armonización Emocional & Esencias",
-    description: "Tratamiento vibracional y olfativo con esencias flores de Bach y musicoterapia estéreo para relajar peluditos nerviosos.",
-    basePrice: 45000,
-    duration: "1 - 1.5 horas",
-    iconName: "Heart",
-    features: [
-      "🌸 Difusión de elixires florales calmantes (Flores de Bach adaptadas para caninos y felinos)",
-      "🎵 Musicoterapia ambiental con frecuencias de 432Hz para rebajar la frecuencia cardíaca",
-      "💆 Masaje bioenergético craneo-sacral y digitopresión relajante",
-      "🌿 Vaporización de mantos con hidrolato de lavanda y manzanilla orgánica",
-      "🩺 Ideal para mascotas senior, perritos nerviosos ante el ruido, rescatados o cachorros"
-    ]
   }
 ];
 

@@ -3,6 +3,7 @@ import { Sparkles, ArrowLeftRight, HelpCircle } from "lucide-react";
 
 export default function BeforeAfterSlider() {
   const [sliderPosition, setSliderPosition] = useState<number>(50); // percentage (0 - 100)
+  const [containerWidth, setContainerWidth] = useState<number>(600);
   const containerRef = useRef<HTMLDivElement>(null);
   const isDragging = useRef<boolean>(false);
 
@@ -39,6 +40,27 @@ export default function BeforeAfterSlider() {
     return () => {
       window.removeEventListener("mouseup", stopDrag);
       window.removeEventListener("touchend", stopDrag);
+    };
+  }, []);
+
+  // Use ResizeObserver for responsive fluid width on cellphones
+  useEffect(() => {
+    if (!containerRef.current) return;
+    
+    // Set initial width
+    setContainerWidth(containerRef.current.getBoundingClientRect().width);
+
+    const observer = new ResizeObserver((entries) => {
+      for (const entry of entries) {
+        if (entry.contentRect.width) {
+          setContainerWidth(entry.contentRect.width);
+        }
+      }
+    });
+    
+    observer.observe(containerRef.current);
+    return () => {
+      observer.disconnect();
     };
   }, []);
 
@@ -79,15 +101,15 @@ export default function BeforeAfterSlider() {
 
         {/* BEFORE IMAGE (Foreground - clip-pathed over After image) */}
         <div 
-          className="absolute inset-x-0 top-0 bottom-0 pointer-events-none"
+          className="absolute inset-y-0 left-0 pointer-events-none"
           style={{ width: `${sliderPosition}%`, overflow: "hidden" }}
         >
           <img 
             src="https://images.unsplash.com/photo-1543466835-00a7907e9de1?auto=format&fit=crop&q=80&w=900" 
             alt="Mascota esperando Baño Premium" 
             referrerPolicy="no-referrer"
-            className="absolute inset-y-0 left-0 w-full h-full object-cover max-w-none"
-            style={{ width: containerRef.current?.getBoundingClientRect().width }}
+            className="absolute inset-y-0 left-0 h-full object-cover max-w-none"
+            style={{ width: containerWidth }}
           />
           {/* Before Tag */}
           <div className="absolute bottom-4 left-4 bg-vibrant-dark text-slate-200 font-mono text-[10px] font-black tracking-widest uppercase px-3.5 py-2 rounded-xl border border-b-2 border-black/30 shadow-md z-10 select-none w-max">
@@ -97,7 +119,7 @@ export default function BeforeAfterSlider() {
 
         {/* Slider Handle (Visual control bar) */}
         <div 
-          className="absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize shadow-md flex items-center justify-center transition-all duration-75 animate-none"
+          className="absolute top-0 bottom-0 w-1 bg-white cursor-ew-resize shadow-md flex items-center justify-center"
           style={{ left: `${sliderPosition}%` }}
         >
           <div className="w-10 h-10 rounded-full bg-white text-vibrant-dark border-2 border-vibrant-dark shadow-xl flex items-center justify-center -translate-x-1/2 cursor-ew-resize pointer-events-none transform hover:scale-105">
@@ -106,7 +128,7 @@ export default function BeforeAfterSlider() {
         </div>
       </div>
 
-      <div className="flex justify-between items-center text-xs text-vibrant-dark/65 font-bold font-sans px-2">
+      <div className="flex flex-col sm:flex-row justify-between items-center text-xs text-vibrant-dark/65 font-bold font-sans px-2 gap-2 text-center">
         <span>🐕 Toby antes de la recogida</span>
         <span>🧼 Toby de regreso en casa perfumado</span>
       </div>

@@ -247,18 +247,22 @@ ${serviceListText}
         }
 
         if (!res.ok) {
-          setBookingOverlapError(data.message || `Error en el servicio de agendas (Efecto: ${res.status}). Por favor, intenta de nuevo.`);
-          return;
+          // If it is specifically an overlap conflict, warn them, but otherwise proceed!
+          if (data.error === "OVERLAP") {
+            setBookingOverlapError(data.message || "¡Conflicto de Horario! Esa jornada ya se encuentra reservada.");
+            return;
+          }
+          console.warn("Server returned error, but proceeding to Step 4 (WhatsApp) anyway:", res.status);
+        } else {
+          // Successfully stored! Reload the scheduling slots
+          fetchExistingBookings();
+
+          if (onBookingSubmitted) {
+            onBookingSubmitted(booking);
+          }
         }
 
-        // Successfully stored! Reload the scheduling slots
-        fetchExistingBookings();
-
-        if (onBookingSubmitted) {
-          onBookingSubmitted(booking);
-        }
-
-        // Proceed to success step 4
+        // Proceed to success step 4 to unlock WhatsApp action!
         setStep(4);
 
         // Open WhatsApp Link safely without iframe-breaking location fallback
@@ -270,9 +274,16 @@ ${serviceListText}
       })
       .catch((err) => {
         setSubmitting(false);
-        console.error("Submit Error:", err);
-        const detail = err && (err as any).message ? `: ${(err as any).message}` : "";
-        setBookingOverlapError(`Error de red al conectar con el servidor de agendas de Studio Pet${detail}. Intenta de nuevo.`);
+        console.error("Submit Error (Bypassed to guarantee WhatsApp launch):", err);
+        
+        // Even with a total network off-line/404 state, advance to Step 4 so the user is never blocked!
+        setStep(4);
+
+        try {
+          window.open(generateWhatsAppMessage(), "_blank");
+        } catch (e) {
+          console.error("Popup blocked:", e);
+        }
       });
   };
 
@@ -320,9 +331,9 @@ ${serviceListText}
   ];
 
   return (
-    <div id="calculator-card" className="bg-white rounded-[36px] border-2 border-vibrant-dark/15 shadow-xl overflow-hidden max-w-4xl mx-auto">
+    <div id="calculator-card" className="bg-white rounded-[24px] border-2 border-vibrant-dark/15 shadow-lg overflow-hidden max-w-4xl mx-auto">
       {/* Steps Indicator Progress bar */}
-      <div className="bg-vibrant-bg pb-6 pt-8 px-6 sm:px-10 border-b-2 border-vibrant-dark/10">
+      <div className="bg-vibrant-bg pb-4 pt-5 px-4 sm:px-6 border-b-2 border-vibrant-dark/10">
         <div className="flex justify-between items-center max-w-xl mx-auto">
           {steps.map((s, idx) => {
             const stepNum = idx + 1;
@@ -333,21 +344,21 @@ ${serviceListText}
               <div key={idx} className="flex flex-col items-center flex-1 relative">
                 {/* Connecting lines */}
                 {idx > 0 && (
-                  <div className={`absolute left-[-50%] right-[50%] h-[3px] top-[18px] -z-10 ${
+                  <div className={`absolute left-[-50%] right-[50%] h-[2px] top-[15px] -z-10 ${
                     stepNum <= step ? "bg-vibrant-turquoise" : "bg-vibrant-dark/10"
                   }`} />
                 )}
                 
-                <div className={`w-10 h-10 rounded-full flex items-center justify-center font-black text-sm transition-all duration-300 border-2 ${
+                <div className={`w-8 h-8 rounded-full flex items-center justify-center font-black text-xs transition-all duration-300 border-2 ${
                   isCompleted 
                     ? "bg-vibrant-turquoise text-white border-vibrant-turquoise" 
                     : isActive 
-                      ? "bg-vibrant-dark text-white border-vibrant-dark ring-4 ring-vibrant-yellow" 
+                      ? "bg-vibrant-dark text-white border-vibrant-dark ring-2 ring-vibrant-yellow" 
                       : "bg-slate-100 text-slate-400 border-slate-200"
                 }`}>
-                  {isCompleted ? <Check className="w-5 h-5 stroke-[3]" /> : stepNum}
+                  {isCompleted ? <Check className="w-4 h-4 stroke-[3]" /> : stepNum}
                 </div>
-                <span className={`text-[11px] mt-2 font-black uppercase tracking-wider hidden sm:block ${
+                <span className={`text-[10px] mt-1 font-black uppercase tracking-wider hidden sm:block ${
                   isActive ? "text-vibrant-dark" : isCompleted ? "text-vibrant-turquoise" : "text-slate-400"
                 }`}>
                   {s.title}
@@ -358,7 +369,7 @@ ${serviceListText}
         </div>
       </div>
 
-      <div className="p-6 sm:p-10">
+      <div className="p-4 sm:p-6 lg:p-8">
         <AnimatePresence mode="wait">
           {/* STEP 1: PET SPECS */}
           {step === 1 && (
@@ -367,13 +378,13 @@ ${serviceListText}
               initial={{ opacity: 0, x: 15 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: -15 }}
-              transition={{ duration: 0.2 }}
-              className="space-y-8"
+              transition={{ duration: 0.15 }}
+              className="space-y-5"
             >
               <div className="text-center max-w-lg mx-auto">
-                <h3 className="text-2xl font-black text-vibrant-dark tracking-tight">¡Cuéntanos sobre tu mascota!</h3>
-                <p className="text-vibrant-dark/70 text-xs sm:text-sm mt-1.5 font-semibold">
-                  Ajustamos nuestros insumos y técnicas de peinado según el tamaño y la especie de tu compañero fiel.
+                <h3 className="text-xl font-black text-vibrant-dark tracking-tight">¡Cuéntanos sobre tu mascota!</h3>
+                <p className="text-vibrant-dark/70 text-xs mt-1 font-semibold">
+                  Ajustamos nuestros insumos según el tamaño y la especie de tu compañero fiel.
                 </p>
               </div>
 
