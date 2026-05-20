@@ -5,7 +5,6 @@ import GroomingCalculator, { getFutureDate } from "./components/GroomingCalculat
 import GroomingAgenda from "./components/GroomingAgenda";
 import AiAdvisor from "./components/AiAdvisor";
 import FaqSection from "./components/FaqSection";
-import BeforeAfterSlider from "./components/BeforeAfterSlider";
 import { SERVICES, SIZE_FACTORS, MODEL_PETS } from "./data";
 import { BookingState, PetType } from "./types";
 import { 
@@ -436,21 +435,6 @@ export default function App() {
               </button>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* SECTION 3: BEFORE / AFTER REVEAL SLIDER */}
-      <section className="py-6 sm:py-8 border-b-2 border-vibrant-dark/10">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="text-center max-w-xl mx-auto mb-8 space-y-1.5">
-            <span className="text-[10px] font-mono tracking-widest text-vibrant-red uppercase font-black block">Galería Interactiva</span>
-            <h2 className="font-sans font-black text-2xl text-vibrant-dark tracking-tight">El Resultado de Studio Pet</h2>
-            <p className="text-vibrant-dark/70 font-sans text-xs font-semibold">
-              Tratamientos diseñados para devolverle el brillo al manto y asegurar una piel saludable y súper hidratada.
-            </p>
-          </div>
-
-          <BeforeAfterSlider />
         </div>
       </section>
 

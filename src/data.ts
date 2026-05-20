@@ -152,7 +152,7 @@ export const MODEL_PETS: ModelPet[] = [
     name: "Simba",
     breed: "Gato Siamés",
     service: "Baño Higiene Completa",
-    image: "https://images.unsplash.com/photo-1513360309081-36f5e878fc9e?auto=format&fit=crop&q=80&w=300"
+    image: "https://images.unsplash.com/photo-1559190394-df5a28aab5c5?auto=format&fit=crop&q=80&w=300"
   }
 ];
 
