@@ -1,0 +1,6 @@
+{
+  "name": "Studio Pet",
+  "description": "Premium mobile pet grooming and spa service. Schedule door-to-door hygiene, styling, and care for dogs and cats with free urban pickup.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
